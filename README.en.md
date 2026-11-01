@@ -37,16 +37,22 @@ You can also provide a résumé and work for a portfolio, or data and workflows 
 
 These fictional examples demonstrate different information structures and visual directions. They are not templates every project should follow.
 
-| Brand and shop | Operations dashboard | AI product interface |
-| --- | --- | --- |
-| ![Kora shop on desktop](docs/screenshots/shop-desktop.png) | ![Relay dashboard on desktop](docs/screenshots/dashboard-desktop.png) | ![Draft Studio on desktop](docs/screenshots/draft-desktop.png) |
-| Browse products and change a local bag; no checkout or payment. | Filter, search, linked metrics, and detail using sample data. | Suggested inputs and an outline built from a local template; no AI model is called. |
+| Service brand | Brand and shop |
+| --- | --- |
+| ![Field Studio on desktop](docs/screenshots/field-desktop.png) | ![Kora shop on desktop](docs/screenshots/shop-desktop.png) |
+| Explore services and prepare a local project note; no enquiry is sent. | Browse products and change a local bag; no checkout or payment. |
+
+| Operations dashboard | AI product interface |
+| --- | --- |
+| ![Relay dashboard on desktop](docs/screenshots/dashboard-desktop.png) | ![Draft Studio on desktop](docs/screenshots/draft-desktop.png) |
+| Filter, search, linked metrics, and detail using sample data. | Suggested inputs and an outline built from a local template; no AI model is called. |
 
 The bilingual [fictional portfolio](examples/alex-lin/dist/index.html) includes cases, a sample dashboard, and a content brief. Its person, employment history, and business figures are invented.
 
 <details>
 <summary>Mobile views</summary>
 
+![Service brand on mobile](docs/screenshots/field-mobile.png)
 ![Shop on mobile](docs/screenshots/shop-mobile.png)
 ![Dashboard on mobile](docs/screenshots/dashboard-mobile.png)
 ![AI interface on mobile](docs/screenshots/draft-mobile.png)

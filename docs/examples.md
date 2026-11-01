@@ -6,6 +6,12 @@
 
 Start with the audience, primary task, existing content, and privacy boundaries. Supply a direction or ask the agent to derive one from the brief.
 
+## 服务品牌 / Service brand
+
+> 使用 $portfolio-website 为一家虚构的景观设计工作室制作官网。访客需要了解服务和工作方式，并整理一个项目需求；没有接入的联系表单不能声称已发送。
+
+> Use $portfolio-website to create a site for a fictional landscape design studio. Explain its services and process, and help visitors prepare a project note. Do not claim an unconnected form sends enquiries.
+
 ## 品牌商城 / Brand and shop
 
 > 使用 $portfolio-website 为独立茶饮品牌制作商城。顾客需要比较三类产品、选择规格并查看购物袋。品牌希望亲切、有记忆点，但不要套用作品集的布局。没有接入支付的地方明确标注，检查手机和键盘操作。

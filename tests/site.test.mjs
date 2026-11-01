@@ -153,6 +153,18 @@ test('the checker accepts local assets and ignores generated template interpolat
   assert.ok(result.syntaxChecked >= 2);
 });
 
+test('the checker can validate a single-page example without requiring portfolio routes', async () => {
+  const { checkSite } = await import('../scripts/check.mjs');
+  const root = await fixture('check-single-page');
+  await rm(join(root, 'project.html'));
+  await rm(join(root, 'about.html'));
+  const result = await checkSite({ root, requiredEntries: ['index.html'] });
+  assert.deepEqual(result.errors, []);
+  await writeFile(join(root, 'index.html'), '<!doctype html><script src="./missing.js"></script>');
+  const missing = await checkSite({ root, requiredEntries: ['index.html'] });
+  assert.ok(missing.errors.some(message => message.includes('missing.js')));
+});
+
 test('the checker reports missing HTML, CSS, module, and static JS asset references', async () => {
   const { checkSite } = await import('../scripts/check.mjs');
   const root = await fixture('check-missing');

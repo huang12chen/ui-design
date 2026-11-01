@@ -7,7 +7,7 @@ import { checkSite } from './check.mjs';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const siteDirectory = 'examples/alex-lin/dist';
-const exampleDirectories = ['examples/alex-lin/tools', 'examples/kora-shop', 'examples/dispatch-dashboard', 'examples/draft-studio'];
+const exampleDirectories = ['examples/alex-lin/tools', 'examples/field-studio', 'examples/kora-shop', 'examples/dispatch-dashboard', 'examples/draft-studio'];
 const publicFiles = [
   '.gitignore', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'package.json', 'DESIGN.md', 'README.md', 'README.en.md', 'README.zh-CN.md',
   'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'SECURITY.md', 'CHANGELOG.md',
@@ -20,7 +20,7 @@ const publicFiles = [
   'deploy/nginx.conf', '.github/workflows/pages.yml', '.github/workflows/ci.yml',
   '.github/ISSUE_TEMPLATE/bug_report.yml', '.github/ISSUE_TEMPLATE/feature_request.yml', '.github/pull_request_template.md'
 ];
-const screenshotFiles = ['home-desktop.png', 'story-desktop.png', 'growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png', 'shop-desktop.png', 'dashboard-desktop.png', 'draft-desktop.png', 'shop-mobile.png', 'dashboard-mobile.png', 'draft-mobile.png'].map(name => 'docs/screenshots/' + name);
+const screenshotFiles = ['home-desktop.png', 'story-desktop.png', 'growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png', 'field-desktop.png', 'field-mobile.png', 'shop-desktop.png', 'dashboard-desktop.png', 'draft-desktop.png', 'shop-mobile.png', 'dashboard-mobile.png', 'draft-mobile.png'].map(name => 'docs/screenshots/' + name);
 const skillDirectories = ['skills/portfolio-website'];
 const requiredFiles = new Set(publicFiles);
 const optionalScreenshots = [];

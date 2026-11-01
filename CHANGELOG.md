@@ -3,7 +3,7 @@
 ## 1.4.0 — 2026-11-01
 
 - Expand the Skill to brand sites, shops, dashboards, AI interfaces and portfolios. Existing `portfolio-website` installations and invocation remain compatible.
-- Add three fictional, standalone examples with different visual directions and working local interactions. The shop does not process orders; the writing interface uses a local template, not an AI model.
+- Add four fictional, standalone examples with different visual directions and working local interactions. The service brand does not send enquiries, the shop does not process orders, and the writing interface uses a local template, not an AI model.
 - Fix the portfolio's scrolling note covering its disclosure, and add a browser regression across both languages and multiple widths.
 - Return exit code 2 when a requested browser cannot start or a route cannot be measured. Do not silently replace an explicitly requested browser with another one.
 - Include the example source, checks and required scripts in the source archive, and remove a machine-specific path from the optional measurement script.

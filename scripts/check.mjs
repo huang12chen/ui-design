@@ -137,14 +137,17 @@ function inspectSyntax(source, label, extension, errors) {
 }
 
 /** Validate a static output directory without executing its browser JavaScript. */
-export async function checkSite({ root = defaultRoot } = {}) {
+export async function checkSite({ root = defaultRoot, requiredEntries = ['index.html', 'project.html', 'about.html'] } = {}) {
+  if (!Array.isArray(requiredEntries) || requiredEntries.length === 0 || requiredEntries.some(entry => typeof entry !== 'string' || !entry)) {
+    throw new TypeError('requiredEntries must be a non-empty list of entry page names');
+  }
   const errors = [];
   let base;
   try { base = await realpath(resolve(root)); }
   catch { return { errors: ['Static output directory is missing'], filesChecked: 0, syntaxChecked: 0 }; }
   const files = await listFiles(base, errors);
   const available = new Set(files.map(file => slash(relative(base, file))));
-  for (const entry of ['index.html', 'project.html', 'about.html']) {
+  for (const entry of requiredEntries) {
     if (!available.has(entry)) errors.push('Missing entry page: ' + entry);
   }
   let syntaxChecked = 0;
@@ -188,6 +191,12 @@ async function inspectEngineeringScripts(folder, errors) {
 const directlyRun = process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url;
 if (directlyRun) {
   const result = await checkSite();
+  for (const name of ['field-studio', 'kora-shop', 'dispatch-dashboard', 'draft-studio']) {
+    const example = await checkSite({ root: join(projectRoot, 'examples', name), requiredEntries: ['index.html'] });
+    result.errors.push(...example.errors.map(error => `examples/${name}: ${error}`));
+    result.filesChecked += example.filesChecked;
+    result.syntaxChecked += example.syntaxChecked;
+  }
   result.syntaxChecked += await inspectEngineeringScripts(join(projectRoot, 'scripts'), result.errors);
   result.syntaxChecked += await inspectEngineeringScripts(join(projectRoot, 'tests'), result.errors);
   if (result.errors.length) {

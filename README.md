@@ -37,16 +37,22 @@ Skill 的调用名继续使用 `portfolio-website`，兼容以前的安装。Cod
 
 这些示例展示不同的信息结构与视觉方向，不是套用到所有项目的模板。品牌、人物和数据均为虚构。
 
-| 品牌商城 | 运营后台 | AI 产品界面 |
-| --- | --- | --- |
-| ![Kora 商城桌面界面](docs/screenshots/shop-desktop.png) | ![Relay 后台桌面界面](docs/screenshots/dashboard-desktop.png) | ![Draft Studio 桌面界面](docs/screenshots/draft-desktop.png) |
-| 商品浏览、购物袋和数量调整；没有结账或支付。 | 筛选、搜索、指标联动与详情；使用示例数据。 | 建议输入与提纲生成；使用本地模板，没有调用 AI 模型。 |
+| 服务品牌官网 | 品牌商城 |
+| --- | --- |
+| ![Field Studio 桌面界面](docs/screenshots/field-desktop.png) | ![Kora 商城桌面界面](docs/screenshots/shop-desktop.png) |
+| 服务介绍、工作方式与项目需求预览；不会发送咨询。 | 商品浏览、购物袋和数量调整；没有结账或支付。 |
+
+| 运营后台 | AI 产品界面 |
+| --- | --- |
+| ![Relay 后台桌面界面](docs/screenshots/dashboard-desktop.png) | ![Draft Studio 桌面界面](docs/screenshots/draft-desktop.png) |
+| 筛选、搜索、指标联动与详情；使用示例数据。 | 建议输入与提纲生成；使用本地模板，没有调用 AI 模型。 |
 
 另有中英文[虚构作品集](examples/alex-lin/dist/index.html)，包含案例、示例看板和内容简报。示例人物、任职经历和业务数字均为虚构。
 
 <details>
 <summary>查看手机界面</summary>
 
+![品牌官网手机界面](docs/screenshots/field-mobile.png)
 ![商城手机界面](docs/screenshots/shop-mobile.png)
 ![后台手机界面](docs/screenshots/dashboard-mobile.png)
 ![AI 产品手机界面](docs/screenshots/draft-mobile.png)
@@ -61,7 +67,7 @@ Skill 的调用名继续使用 `portfolio-website`，兼容以前的安装。Cod
 npm run dev:examples
 ```
 
-打开终端打印的本地地址，选择四个示例之一。需要 Node.js 22+，不需要 npm 依赖、账号或 API Key。原有作品集单独预览命令 `npm run dev` 仍然可用；按 Ctrl+C 停止服务。
+打开终端打印的本地地址，选择五个示例之一。需要 Node.js 22+，不需要 npm 依赖、账号或 API Key。原有作品集单独预览命令 `npm run dev` 仍然可用；按 Ctrl+C 停止服务。
 
 ## 自检与验证
 
