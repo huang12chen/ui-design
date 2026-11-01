@@ -7,7 +7,7 @@ import { checkSite } from './check.mjs';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const siteDirectory = 'examples/alex-lin/dist';
-const exampleDirectories = ['examples/alex-lin/tools', 'examples/field-studio', 'examples/kora-shop', 'examples/dispatch-dashboard', 'examples/draft-studio'];
+const exampleDirectories = ['examples/alex-lin/tools', 'examples/field-studio', 'examples/kora-shop', 'examples/dispatch-dashboard', 'examples/draft-studio', 'examples/motion-lab'];
 const publicFiles = [
   '.gitignore', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'package.json', 'DESIGN.md', 'README.md', 'README.en.md', 'README.zh-CN.md',
   'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'SECURITY.md', 'CHANGELOG.md',
@@ -16,11 +16,11 @@ const publicFiles = [
   'docs/deploy.md', 'docs/deploy.zh-CN.md', 'docs/recording-guide.md', 'docs/sample-resume.md',
   'docs/packages.md', 'docs/packages.zh-CN.md',
   'scripts/serve.mjs', 'scripts/serve-examples.mjs', 'scripts/check.mjs', 'scripts/package-release.mjs', 'scripts/audit-site.mjs', 'scripts/craft-probes.mjs', 'examples/index.html',
-  'tests/demos.test.mjs', 'tests/site.test.mjs', 'tests/release.test.mjs', 'tests/audit.test.mjs', 'tests/craft.test.mjs', 'tests/selfcheck.test.mjs', 'tests/mobile-occlusion.test.mjs', 'tests/fixtures/browser/clean/index.html',
+  'tests/demos.test.mjs', 'tests/site.test.mjs', 'tests/release.test.mjs', 'tests/audit.test.mjs', 'tests/craft.test.mjs', 'tests/selfcheck.test.mjs', 'tests/mobile-occlusion.test.mjs', 'tests/motion-lab.test.mjs', 'tests/field-motion.test.mjs', 'tests/draft-states.test.mjs', 'tests/fixtures/browser/clean/index.html',
   'deploy/nginx.conf', '.github/workflows/pages.yml', '.github/workflows/ci.yml',
   '.github/ISSUE_TEMPLATE/bug_report.yml', '.github/ISSUE_TEMPLATE/feature_request.yml', '.github/pull_request_template.md'
 ];
-const screenshotFiles = ['home-desktop.png', 'story-desktop.png', 'growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png', 'field-desktop.png', 'field-mobile.png', 'shop-desktop.png', 'dashboard-desktop.png', 'draft-desktop.png', 'shop-mobile.png', 'dashboard-mobile.png', 'draft-mobile.png'].map(name => 'docs/screenshots/' + name);
+const screenshotFiles = ['home-desktop.png', 'story-desktop.png', 'growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png', 'field-desktop.png', 'field-mobile.png', 'shop-desktop.png', 'dashboard-desktop.png', 'draft-desktop.png', 'shop-mobile.png', 'dashboard-mobile.png', 'draft-mobile.png', 'motion-desktop.png', 'motion-mobile.png'].map(name => 'docs/screenshots/' + name);
 const skillDirectories = ['skills/portfolio-website'];
 const requiredFiles = new Set(publicFiles);
 const optionalScreenshots = [];
@@ -255,7 +255,7 @@ export async function createRelease({ root = projectRoot, allowIncomplete = fals
   const visited = new Set([base]), selected = new Map(), warnings = [];
   const output = join(base, 'release');
   await checkedPath(base, 'release', visited, true);
-  for (const name of ['portfolio-ui-design-source.zip', 'portfolio-ui-design-site.zip', 'manifest.json', 'SHA256SUMS.txt']) {
+  for (const name of ['ui-design-source.zip', 'ui-design-site.zip', 'portfolio-ui-design-source.zip', 'portfolio-ui-design-site.zip', 'manifest.json', 'SHA256SUMS.txt']) {
     await checkedPath(base, 'release/' + name, visited, true);
   }
   for (const name of publicFiles) {
@@ -296,11 +296,12 @@ export async function createRelease({ root = projectRoot, allowIncomplete = fals
     verifyPublicText(name, bytes);
     snapshot.set(name, bytes);
   }
-  const source = new Map([...snapshot].map(([name, bytes]) => ['portfolio-ui-design/' + name, bytes]));
+  const source = new Map([...snapshot].map(([name, bytes]) => ['ui-design/' + name, bytes]));
+  const legacySource = new Map([...snapshot].map(([name, bytes]) => ['portfolio-ui-design/' + name, bytes]));
   const site = new Map([...snapshot].filter(([name]) => name.startsWith(siteDirectory + '/')).map(([name, bytes]) => [name.slice(siteDirectory.length + 1), bytes]));
   site.set('LICENSE.txt', snapshot.get('LICENSE'));
   site.set('THIRD_PARTY_NOTICES.md', snapshot.get('THIRD_PARTY_NOTICES.md'));
-  const builds = [['portfolio-ui-design-source.zip', source], ['portfolio-ui-design-site.zip', site]];
+  const builds = [['ui-design-source.zip', source], ['ui-design-site.zip', site], ['portfolio-ui-design-source.zip', legacySource], ['portfolio-ui-design-site.zip', site]];
   const archives = builds.map(([name, files]) => {
     const bytes = writeZip(files);
     verifyRoundtrip(bytes, files);

@@ -5,7 +5,7 @@
 <p align="center">根据不同用户、内容和任务，设计并实现适合的网站界面。</p>
 
 <p align="center">
-  <a href="https://github.com/huang12chen/portfolio-ui-design/actions/workflows/ci.yml"><img src="https://github.com/huang12chen/portfolio-ui-design/actions/workflows/ci.yml/badge.svg" alt="构建检查"></a>
+  <a href="https://github.com/huang12chen/ui-design/actions/workflows/ci.yml"><img src="https://github.com/huang12chen/ui-design/actions/workflows/ci.yml/badge.svg" alt="构建检查"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-24292f.svg" alt="MIT 许可"></a>
 </p>
 
@@ -18,7 +18,7 @@
 在项目目录运行，按提示选择编码工具：
 
 ```sh
-npx skills add huang12chen/portfolio-ui-design --skill portfolio-website
+npx skills add huang12chen/ui-design --skill portfolio-website
 ```
 
 需要 Node.js 22.20+。默认安装到当前项目；添加 `-g` 可安装到用户目录。[手动安装、确认和更新](docs/install.md)
@@ -49,6 +49,10 @@ Skill 的调用名继续使用 `portfolio-website`，兼容以前的安装。Cod
 
 另有中英文[虚构作品集](examples/alex-lin/dist/index.html)，包含案例、示例看板和内容简报。示例人物、任职经历和业务数字均为虚构。
 
+[动效交互示例](examples/motion-lab/)可以切换氛围、调整光感、拖动对比、体验长按与取消、重排卡片和暂停动效；它展示的是一种表现方向，不是所有项目的默认风格。
+
+![动效交互示例桌面界面](docs/screenshots/motion-desktop.png)
+
 <details>
 <summary>查看手机界面</summary>
 
@@ -56,6 +60,7 @@ Skill 的调用名继续使用 `portfolio-website`，兼容以前的安装。Cod
 ![商城手机界面](docs/screenshots/shop-mobile.png)
 ![后台手机界面](docs/screenshots/dashboard-mobile.png)
 ![AI 产品手机界面](docs/screenshots/draft-mobile.png)
+![动效交互示例手机界面](docs/screenshots/motion-mobile.png)
 
 </details>
 
@@ -67,7 +72,7 @@ Skill 的调用名继续使用 `portfolio-website`，兼容以前的安装。Cod
 npm run dev:examples
 ```
 
-打开终端打印的本地地址，选择五个示例之一。需要 Node.js 22+，不需要 npm 依赖、账号或 API Key。原有作品集单独预览命令 `npm run dev` 仍然可用；按 Ctrl+C 停止服务。
+打开终端打印的本地地址，选择示例。需要 Node.js 22+，不需要 npm 依赖、账号或 API Key。原有作品集单独预览命令 `npm run dev` 仍然可用；按 Ctrl+C 停止服务。
 
 ## 自检与验证
 

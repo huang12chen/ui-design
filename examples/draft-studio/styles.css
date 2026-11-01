@@ -44,14 +44,15 @@ button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible
 }
 .app {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 204px minmax(0,1fr);
+  display: block;
 }
 .sidebar {
-  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   display: flex;
-  flex-direction: column;
-  padding: 29px 20px;
+  flex-direction: row;
+  align-items: center;
+  min-height: 70px;
+  padding: 10px 42px;
 }
 .brand {
   display: flex;
@@ -64,12 +65,20 @@ button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible
   text-decoration: none;
 }
 .brand-symbol {
-  font-size: 36px;
-  color: var(--lav);
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: var(--lav);
+  color: #252134;
+  font-size: 23px;
   line-height: 1;
 }
 .sidebar-section {
-  margin-top: 82px;
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
 }
 .sidebar-section>p,.sidebar-note span,.eyebrow,.panel-label,.result-label {
   font-size: 10px;
@@ -77,8 +86,7 @@ button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible
   letter-spacing: .13em;
 }
 .sidebar-section>p {
-  color: #858593;
-  padding-left: 9px;
+  display: none;
 }
 .sidebar-section a {
   display: block;
@@ -98,10 +106,7 @@ button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible
   color: #fff;
 }
 .sidebar-note {
-  margin-top: auto;
-  border-top: 1px solid var(--line);
-  padding: 18px 8px 0;
-  color: #9997a7;
+  display: none;
 }
 .sidebar-note span {
   color: #c7bfed;
@@ -114,7 +119,8 @@ button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible
 .workspace {
   min-width: 0;
   padding: 0 42px 55px;
-  max-width: 1600px;
+  max-width: 1480px;
+  margin-inline: auto;
 }
 .topbar {
   height: 69px;
@@ -151,14 +157,14 @@ button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible
   align-items: end;
   justify-content: space-between;
   gap: 30px;
-  padding: 55px 0 40px;
+  padding: 32px 0 28px;
 }
 .eyebrow {
   color: #aaa7bc;
   margin: 0 0 18px;
 }
 .page-heading h1 {
-  font-size: clamp(48px,5vw,78px);
+  font-size: clamp(30px,3.3vw,45px);
   line-height: .98;
   letter-spacing: -.06em;
   margin: 0;
@@ -328,12 +334,16 @@ button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible
   text-align: center;
 }
 .placeholder-mark {
-  font-size: 58px;
-  color: #ccc3e7;
+  width: 48px;
+  height: 58px;
+  display: block;
+  border: 2px solid #bbb3d3;
+  border-radius: 4px;
+  background: linear-gradient(#bbb3d3 0 0) 10px 17px/25px 2px no-repeat, linear-gradient(#bbb3d3 0 0) 10px 27px/25px 2px no-repeat, linear-gradient(#bbb3d3 0 0) 10px 37px/17px 2px no-repeat;
 }
 .placeholder h3 {
-  font: italic 36px/1.05 Georgia,serif;
-  letter-spacing: -.04em;
+  font: 600 24px/1.15 Arial,sans-serif;
+  letter-spacing: -.025em;
   margin: 25px 0 10px;
 }
 .placeholder p {
@@ -434,22 +444,19 @@ button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible
   font-size: 12px;
 }
 @media(max-width:1050px) {
-  .app {
-    grid-template-columns: 70px minmax(0,1fr);
-  }
   .sidebar {
-    padding-inline: 16px;
+    padding-inline: 28px;
   }
-  .brand span:last-child,.sidebar-section>p,.sidebar-section a:not([aria-current]),.sidebar-note {
+  .sidebar-section>p,.sidebar-note {
     display: none;
   }
   .sidebar-section a {
-    font-size: 0;
-    text-align: center;
+    font-size: 13px;
+    text-align: left;
   }
   .sidebar-section a span {
-    font-size: 18px;
-    width: auto;
+    font-size: 16px;
+    width: 26px;
   }
   .workspace {
     padding-inline: 28px;
@@ -480,8 +487,9 @@ button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible
     display: block;
   }
   .sidebar-section {
-    margin: 0;
+    margin: 0 0 0 auto;
   }
+  .sidebar-section a:not([aria-current]) { display: none; }
   .sidebar-section a {
     padding: 8px;
   }
@@ -496,7 +504,7 @@ button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible
     padding: 38px 0 28px;
   }
   .page-heading h1 {
-    font-size: 50px;
+    font-size: 34px;
   }
   .page-heading>p {
     margin-top: 20px;

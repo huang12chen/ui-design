@@ -47,6 +47,11 @@ form.addEventListener('submit', event => {
   document.querySelector('#result-close').textContent = close;
   document.querySelector('#placeholder').hidden = true;
   document.querySelector('#result').hidden = false;
+  const result = document.querySelector('#result');
+  result.getAnimations().forEach(animation => animation.cancel());
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && typeof Element.prototype.animate === 'function') {
+    result.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 280, easing: 'ease-out' });
+  }
   document.querySelector('#output-status').textContent = 'OUTLINE READY';
   document.querySelector('#output-note').textContent = 'Local template · review and edit in your own document.';
   feedback.textContent = '';

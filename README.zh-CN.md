@@ -5,7 +5,7 @@
 <p align="center">根据不同用户、内容和任务，设计并实现适合的网站界面。</p>
 
 <p align="center">
-  <a href="https://github.com/huang12chen/portfolio-ui-design/actions/workflows/ci.yml"><img src="https://github.com/huang12chen/portfolio-ui-design/actions/workflows/ci.yml/badge.svg" alt="构建检查"></a>
+  <a href="https://github.com/huang12chen/ui-design/actions/workflows/ci.yml"><img src="https://github.com/huang12chen/ui-design/actions/workflows/ci.yml/badge.svg" alt="构建检查"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-24292f.svg" alt="MIT 许可"></a>
 </p>
 
@@ -18,7 +18,7 @@
 在项目目录运行，按提示选择编码工具：
 
 ```sh
-npx skills add huang12chen/portfolio-ui-design --skill portfolio-website
+npx skills add huang12chen/ui-design --skill portfolio-website
 ```
 
 需要 Node.js 22.20+。默认安装到当前项目；添加 `-g` 可安装到用户目录。[手动安装、确认和更新](docs/install.md)
@@ -37,19 +37,30 @@ Skill 的调用名继续使用 `portfolio-website`，兼容以前的安装。Cod
 
 这些示例展示不同的信息结构与视觉方向，不是套用到所有项目的模板。品牌、人物和数据均为虚构。
 
-| 品牌商城 | 运营后台 | AI 产品界面 |
-| --- | --- | --- |
-| ![Kora 商城桌面界面](docs/screenshots/shop-desktop.png) | ![Relay 后台桌面界面](docs/screenshots/dashboard-desktop.png) | ![Draft Studio 桌面界面](docs/screenshots/draft-desktop.png) |
-| 商品浏览、购物袋和数量调整；没有结账或支付。 | 筛选、搜索、指标联动与详情；使用示例数据。 | 建议输入与提纲生成；使用本地模板，没有调用 AI 模型。 |
+| 服务品牌官网 | 品牌商城 |
+| --- | --- |
+| ![Field Studio 桌面界面](docs/screenshots/field-desktop.png) | ![Kora 商城桌面界面](docs/screenshots/shop-desktop.png) |
+| 服务介绍、工作方式与项目需求预览；不会发送咨询。 | 商品浏览、购物袋和数量调整；没有结账或支付。 |
+
+| 运营后台 | AI 产品界面 |
+| --- | --- |
+| ![Relay 后台桌面界面](docs/screenshots/dashboard-desktop.png) | ![Draft Studio 桌面界面](docs/screenshots/draft-desktop.png) |
+| 筛选、搜索、指标联动与详情；使用示例数据。 | 建议输入与提纲生成；使用本地模板，没有调用 AI 模型。 |
 
 另有中英文[虚构作品集](examples/alex-lin/dist/index.html)，包含案例、示例看板和内容简报。示例人物、任职经历和业务数字均为虚构。
+
+[动效交互示例](examples/motion-lab/)可以切换氛围、调整光感、拖动对比、体验长按与取消、重排卡片和暂停动效；它展示的是一种表现方向，不是所有项目的默认风格。
+
+![动效交互示例桌面界面](docs/screenshots/motion-desktop.png)
 
 <details>
 <summary>查看手机界面</summary>
 
+![品牌官网手机界面](docs/screenshots/field-mobile.png)
 ![商城手机界面](docs/screenshots/shop-mobile.png)
 ![后台手机界面](docs/screenshots/dashboard-mobile.png)
 ![AI 产品手机界面](docs/screenshots/draft-mobile.png)
+![动效交互示例手机界面](docs/screenshots/motion-mobile.png)
 
 </details>
 
@@ -61,7 +72,7 @@ Skill 的调用名继续使用 `portfolio-website`，兼容以前的安装。Cod
 npm run dev:examples
 ```
 
-打开终端打印的本地地址，选择四个示例之一。需要 Node.js 22+，不需要 npm 依赖、账号或 API Key。原有作品集单独预览命令 `npm run dev` 仍然可用；按 Ctrl+C 停止服务。
+打开终端打印的本地地址，选择示例。需要 Node.js 22+，不需要 npm 依赖、账号或 API Key。原有作品集单独预览命令 `npm run dev` 仍然可用；按 Ctrl+C 停止服务。
 
 ## 自检与验证
 
@@ -71,7 +82,7 @@ npm run dev:examples
 node scripts/selfcheck.mjs <构建产物目录>
 ```
 
-退出码 `0` 表示所请求的检查未发现问题，`1` 表示发现可测缺陷，`2` 表示请求的检查未能完成。`--static-only` 会明确跳过浏览器。自检器包含从作品集场景形成的部分假设，可能不适合所有产品；未测项与误报需要人工判断。自动检查不能替代查看页面和操作主要流程。
+退出码 `0` 表示所测规则没有发现，`1` 表示有规则发现，`2` 表示请求的检查未能完成。`--static-only` 会明确跳过浏览器。自检器包含从作品集场景形成的部分假设，可能不适合所有产品；需要逐条判断适用性，修复确认的问题，并报告未测项和误报。自动检查不能替代查看页面和操作主要流程。
 
 仓库开发检查：
 

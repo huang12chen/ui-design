@@ -73,9 +73,10 @@ button:focus-visible,a:focus-visible {
   line-height: 1;
 }
 .wordmark span {
-  font-size: .55em;
-  vertical-align: top;
-  letter-spacing: 0;
+  font-size: .23em;
+  vertical-align: baseline;
+  letter-spacing: .06em;
+  text-transform: uppercase;
   color: var(--orange);
 }
 .header nav {
@@ -135,14 +136,14 @@ button:focus-visible,a:focus-visible {
   border-bottom: 1px solid var(--line);
   padding-bottom: 20px;
 }
-.hero h1 {
+.hero h2 {
   font-size: clamp(72px,8.2vw,132px);
   line-height: .89;
   letter-spacing: -.075em;
   margin: 65px 0 28px;
   font-weight: 850;
 }
-.hero h1 em {
+.hero h2 em {
   font-family: Georgia,serif;
   font-weight: 400;
 }
@@ -285,7 +286,7 @@ button:focus-visible,a:focus-visible {
   line-height: 1.1;
 }
 .shop {
-  padding: 70px 0 100px;
+  padding: 32px 0 100px;
 }
 .section-intro {
   display: flex;
@@ -294,7 +295,7 @@ button:focus-visible,a:focus-visible {
   gap: 30px;
   margin-bottom: 32px;
 }
-.section-intro h2 {
+.section-intro h1 {
   font-size: clamp(42px,5vw,72px);
   letter-spacing: -.06em;
   line-height: 1;
@@ -309,6 +310,8 @@ button:focus-visible,a:focus-visible {
   grid-template-columns: repeat(3,minmax(0,1fr));
   gap: 22px;
 }
+.product { display:flex; flex-direction:column; }
+.product .add-button { margin-top:auto; }
 .product-art {
   height: 360px;
   display: grid;
@@ -330,6 +333,10 @@ button:focus-visible,a:focus-visible {
   height: 230px;
   padding: 16px;
   transform: rotate(-5deg);
+  transition: transform .35s cubic-bezier(.2,.7,.2,1);
+}
+@media (hover:hover) {
+  .product:hover .mini-pack { transform: rotate(0deg) translateY(-7px); }
 }
 .mini-pack strong {
   font-size: 31px;
@@ -346,11 +353,7 @@ button:focus-visible,a:focus-visible {
   transform: rotate(-2deg);
 }
 .product-number {
-  position: absolute;
-  left: 18px;
-  top: 18px;
-  font-size: 12px;
-  font-weight: 700;
+  display: none;
 }
 .product-info {
   display: flex;
@@ -447,7 +450,9 @@ dialog::backdrop {
 dialog[open] {
   display: flex;
   flex-direction: column;
+  animation: bag-enter .35s cubic-bezier(.2,.7,.2,1) both;
 }
+@keyframes bag-enter { from { transform: translateX(100%); } to { transform: translateX(0); } }
 .dialog-head {
   display: flex;
   align-items: start;
@@ -539,7 +544,7 @@ dialog[open] {
     gap: 28px;
     padding-top: 0;
   }
-  .hero h1 {
+  .hero h2 {
     font-size: clamp(64px,13vw,98px);
     margin: 38px 0 22px;
   }
@@ -604,15 +609,24 @@ dialog[open] {
     margin-top: 18px;
   }
   .shop {
-    padding: 55px 0 70px;
+    padding: 30px 0 70px;
   }
   .products {
-    grid-template-columns: 1fr;
-    gap: 35px;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 28px 12px;
   }
   .product-art {
-    height: 330px;
+    height: 200px;
   }
+  .mini-pack { width: 112px; height: 160px; padding: 12px; }
+  .mini-pack strong { font-size: 23px; }
+  .mini-pack span { font-size: 17px; }
+  .mini-pack small { font-size: 7px; }
+  .product-info { display: block; min-height: 104px; }
+  .product-info h3 { font-size: 16px; }
+  .product-info p { font-size: 12px; }
+  .product-info>span { display: block; margin-top: 7px; font-size: 14px; }
+  .add-button { padding: 12px; font-size: 12px; }
   .story {
     padding: 70px 0;
   }

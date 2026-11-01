@@ -18,6 +18,8 @@ Describe the primary task, its information objects, and the first meaningful act
 
 When comparing directions, look at the navigation model, first screen, density, rhythm, type, media, surface, and interaction together. Different products may deliberately share a design system; distinct products should not become identical by accident. A palette or a person's job title alone does not prove distinctness.
 
+For an open brief with room to explore, sketch at least two plausible *structures* before committing: what appears first, what the user acts on, how content is grouped, and what visual material carries the idea. For example, a collection-first shop, an object-focused product story, and a guided comparison make different choices even if they sell the same thing. Choose for the actual task and identity, not for novelty alone; an existing design system or explicit direction can make exploration unnecessary. Compare with recent work: repeated split heroes, the same headline cadence, decorative symbols, type pairing, card shape, and motion can create a house signature even when the colors differ. Change the underlying decisions when they do not fit this brief, and preserve familiar patterns when they help the user.
+
 ## Choose interaction by its purpose
 
 | Pattern | Useful when | Implementation and checks |

@@ -63,6 +63,9 @@ document.querySelectorAll('[data-add]').forEach(button => button.addEventListene
   const id = button.dataset.add;
   quantities[id] += 1;
   render();
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && typeof Element.prototype.animate === 'function') {
+    document.querySelector('#cart-count').animate([{ transform: 'scale(1)' }, { transform: 'scale(1.25)' }, { transform: 'scale(1)' }], { duration: 300, easing: 'ease-out' });
+  }
   live.textContent = products[id].name + ' added to bag';
 }));
 document.querySelector('#cart-open').addEventListener('click', () => { render(); dialog.showModal(); });

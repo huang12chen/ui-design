@@ -191,7 +191,7 @@ async function inspectEngineeringScripts(folder, errors) {
 const directlyRun = process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url;
 if (directlyRun) {
   const result = await checkSite();
-  for (const name of ['field-studio', 'kora-shop', 'dispatch-dashboard', 'draft-studio']) {
+  for (const name of ['field-studio', 'kora-shop', 'dispatch-dashboard', 'draft-studio', 'motion-lab']) {
     const example = await checkSite({ root: join(projectRoot, 'examples', name), requiredEntries: ['index.html'] });
     result.errors.push(...example.errors.map(error => `examples/${name}: ${error}`));
     result.filesChecked += example.filesChecked;

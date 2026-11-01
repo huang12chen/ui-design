@@ -5,7 +5,7 @@
 <p align="center">Design and build interfaces around their users, content, and tasks.</p>
 
 <p align="center">
-  <a href="https://github.com/huang12chen/portfolio-ui-design/actions/workflows/ci.yml"><img src="https://github.com/huang12chen/portfolio-ui-design/actions/workflows/ci.yml/badge.svg" alt="Build checks"></a>
+  <a href="https://github.com/huang12chen/ui-design/actions/workflows/ci.yml"><img src="https://github.com/huang12chen/ui-design/actions/workflows/ci.yml/badge.svg" alt="Build checks"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-24292f.svg" alt="MIT license"></a>
 </p>
 
@@ -18,7 +18,7 @@ A UI design Skill for coding tools such as Codex, Claude Code, and Cursor. It he
 Run this in your project and select your coding tool:
 
 ```sh
-npx skills add huang12chen/portfolio-ui-design --skill portfolio-website
+npx skills add huang12chen/ui-design --skill portfolio-website
 ```
 
 Requires Node.js 22.20+. This installs to the current project; add `-g` for your user directory. See [manual installation, discovery, and updates](docs/install.md).
@@ -49,6 +49,10 @@ These fictional examples demonstrate different information structures and visual
 
 The bilingual [fictional portfolio](examples/alex-lin/dist/index.html) includes cases, a sample dashboard, and a content brief. Its person, employment history, and business figures are invented.
 
+The [motion study](examples/motion-lab/) lets you change moods and light, drag a comparison, try a cancellable hold, rearrange cards, and pause motion. It demonstrates one expressive direction, not a default style for every project.
+
+![Motion study on desktop](docs/screenshots/motion-desktop.png)
+
 <details>
 <summary>Mobile views</summary>
 
@@ -56,6 +60,7 @@ The bilingual [fictional portfolio](examples/alex-lin/dist/index.html) includes 
 ![Shop on mobile](docs/screenshots/shop-mobile.png)
 ![Dashboard on mobile](docs/screenshots/dashboard-mobile.png)
 ![AI interface on mobile](docs/screenshots/draft-mobile.png)
+![Motion study on mobile](docs/screenshots/motion-mobile.png)
 
 </details>
 

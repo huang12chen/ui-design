@@ -58,11 +58,15 @@
   :root[data-motion="on"] [data-parallax-root][data-depth-idle] .console-mock,
   :root[data-motion="on"] [data-parallax-root][data-depth-idle] .console-bezel,
   :root[data-motion="on"] [data-parallax-root][data-depth-idle] .console-insight { animation-play-state: paused; }
-  /* The note travels with the card rather than moving independently: on narrow screens it is in
-     normal flow immediately after the disclosure, and an upward translation covers that text.
-     The bezel still moves against the card, while the card and its contents remain together. */
+  /* On narrow screens the note follows the disclosure in normal flow. Keep it there; an
+     independent upward translation would cover the preceding text. On wider layouts its
+     independent parallax moves away from the disclosure instead of upward into it. */
+  @media (min-width: 561px) {
+    :root[data-motion="on"] [data-parallax-root] .console-insight { animation: insight-shift linear both; animation-timeline: view(block); animation-range: cover; }
+  }
   @keyframes mock-shift { from { transform: translateY(0); } to { transform: translateY(-9px); } }
   @keyframes bezel-shift { from { transform: translateY(0); } to { transform: translateY(-14px); } }
+  @keyframes insight-shift { from { transform: translateY(0); } to { transform: translateY(36px); } }
 }
 
 /* --- route transitions: cross-document view transitions, no JS required.

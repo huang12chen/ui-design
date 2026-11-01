@@ -191,6 +191,16 @@ button,summary {
   height:auto;
   overflow:hidden
 }
+/* A scroll-linked landscape stays inside its illustration; content and controls do not move. */
+@media (prefers-reduced-motion:no-preference) {
+  @supports (view-timeline-name: --landscape) and (animation-timeline: view()) {
+    .hero-art { view-timeline-name: --landscape; view-timeline-axis: block; }
+    .land-sun { animation: sun-drift linear both; animation-timeline: --landscape; animation-range: cover; }
+    .land-pond { animation: pond-drift linear both; animation-timeline: --landscape; animation-range: cover; }
+    @keyframes sun-drift { from { transform: translateY(28px); } to { transform: translateY(-28px); } }
+    @keyframes pond-drift { from { transform: translateY(10px); } to { transform: translateY(-10px); } }
+  }
+}
 .hero-art figcaption {
   display:flex;
   justify-content:space-between;

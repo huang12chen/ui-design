@@ -17,7 +17,7 @@ const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 async function fixture(name) {
   const root = join(fixtures, name);
   const files = {
-    'package.json': '{"name":"portfolio-ui-design","version":"1.0.0","type":"module"}',
+    'package.json': '{"name":"ui-design","version":"1.0.0","type":"module"}',
     '.gitignore': 'release/\n',
     'LICENSE': 'MIT sample license\n',
     'THIRD_PARTY_NOTICES.md': 'Third-party credits\n',
@@ -61,6 +61,7 @@ async function fixture(name) {
     'examples/kora-shop/index.html': '<!doctype html><html><body>Shop</body></html>',
     'examples/dispatch-dashboard/index.html': '<!doctype html><html><body>Dashboard</body></html>',
     'examples/draft-studio/index.html': '<!doctype html><html><body>Draft</body></html>',
+    'examples/motion-lab/index.html': '<!doctype html><html><body>Motion study</body></html>',
     'scripts/check.mjs': 'export {};\n',
     'scripts/package-release.mjs': 'export {};\n',
     'scripts/audit-site.mjs': 'export {};\n',
@@ -72,6 +73,9 @@ async function fixture(name) {
     'tests/craft.test.mjs': 'export {};\n',
     'tests/selfcheck.test.mjs': 'export {};\n',
     'tests/mobile-occlusion.test.mjs': 'export {};\n',
+    'tests/motion-lab.test.mjs': 'export {};\n',
+    'tests/field-motion.test.mjs': 'export {};\n',
+    'tests/draft-states.test.mjs': 'export {};\n',
     'tests/fixtures/browser/clean/index.html': '<!doctype html><html><body>Fixture</body></html>',
     'docs/screenshots/home-desktop.png': Buffer.from([137, 80, 78, 71, 0, 255, 1]),
     'skills/portfolio-website/SKILL.md': '---\nname: portfolio-website\ndescription: Example\n---\n',
@@ -86,7 +90,7 @@ async function fixture(name) {
     'authoring-evidence.md': 'PRIVATE_SENTINEL',
     'docs/owner-session.json': 'PRIVATE_SENTINEL'
   };
-  for (const name of ['growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png', 'story-desktop.png', 'field-desktop.png', 'field-mobile.png', 'shop-desktop.png', 'dashboard-desktop.png', 'draft-desktop.png', 'shop-mobile.png', 'dashboard-mobile.png', 'draft-mobile.png']) files['docs/screenshots/' + name] = Buffer.from([137, 80, 78, 71, 0, 255, 1]);
+  for (const name of ['growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png', 'story-desktop.png', 'field-desktop.png', 'field-mobile.png', 'shop-desktop.png', 'dashboard-desktop.png', 'draft-desktop.png', 'shop-mobile.png', 'dashboard-mobile.png', 'draft-mobile.png', 'motion-desktop.png', 'motion-mobile.png']) files['docs/screenshots/' + name] = Buffer.from([137, 80, 78, 71, 0, 255, 1]);
   for (const [relative, content] of Object.entries(files)) {
     const file = join(root, relative);
     await mkdir(dirname(file), { recursive: true });
@@ -101,8 +105,8 @@ test('release creates allowlisted source and flat site archives with verified ha
   const result = await createRelease({ root });
   const manifest = JSON.parse(await readFile(join(root, 'release', 'manifest.json'), 'utf8'));
   assert.equal(manifest.schemaVersion, 1);
-  assert.equal(manifest.archives.length, 2);
-  assert.deepEqual(result.archives.map(item => item.name), ['portfolio-ui-design-source.zip', 'portfolio-ui-design-site.zip']);
+  assert.equal(manifest.archives.length, 4);
+  assert.deepEqual(result.archives.map(item => item.name), ['ui-design-source.zip', 'ui-design-site.zip', 'portfolio-ui-design-source.zip', 'portfolio-ui-design-site.zip']);
   for (const archive of manifest.archives) {
     const bytes = await readFile(join(root, 'release', archive.name));
     assert.equal(hash(bytes), archive.sha256);
@@ -116,8 +120,13 @@ test('release creates allowlisted source and flat site archives with verified ha
   }
   const source = readZipEntries(await readFile(join(root, 'release', 'portfolio-ui-design-source.zip')));
   const site = readZipEntries(await readFile(join(root, 'release', 'portfolio-ui-design-site.zip')));
+  const canonicalSource = readZipEntries(await readFile(join(root, 'release', 'ui-design-source.zip')));
+  const canonicalSite = readZipEntries(await readFile(join(root, 'release', 'ui-design-site.zip')));
+  assert.ok(canonicalSource.has('ui-design/skills/portfolio-website/SKILL.md'));
+  assert.ok(canonicalSource.has('ui-design/examples/motion-lab/index.html'));
+  assert.deepEqual(canonicalSite.get('index.html'), site.get('index.html'));
   for (const path of ['portfolio-ui-design/README.md', 'portfolio-ui-design/docs/media/gallery.gif', 'portfolio-ui-design/docs/deploy.md', 'portfolio-ui-design/docs/screenshots/home-desktop.png', 'portfolio-ui-design/skills/portfolio-website/SKILL.md', 'portfolio-ui-design/deploy/nginx.conf', 'portfolio-ui-design/.github/workflows/pages.yml']) assert.ok(source.has(path), path);
-  for (const name of ['field-studio', 'kora-shop', 'dispatch-dashboard', 'draft-studio']) assert.ok(source.has('portfolio-ui-design/examples/' + name + '/index.html'));
+  for (const name of ['field-studio', 'kora-shop', 'dispatch-dashboard', 'draft-studio', 'motion-lab']) assert.ok(source.has('portfolio-ui-design/examples/' + name + '/index.html'));
   for (const name of ['styles.css', 'site.js']) assert.ok(source.has('portfolio-ui-design/examples/field-studio/' + name));
   for (const name of ['scripts/audit-site.mjs', 'scripts/craft-probes.mjs', 'examples/alex-lin/tools/views.js', 'tests/selfcheck.test.mjs', 'tests/fixtures/browser/clean/index.html']) assert.ok(source.has('portfolio-ui-design/' + name), name);
   assert.equal([...source.keys()].some(path => path.startsWith('portfolio-ui-design/skills/unpublished-draft/')), false);
@@ -141,6 +150,8 @@ test('identical source bytes produce identical archives across repeated releases
   const sums = await readFile(join(root, 'release', 'SHA256SUMS.txt'), 'utf8');
   assert.match(sums, /[a-f0-9]{64}  portfolio-ui-design-source\.zip/);
   assert.match(sums, /[a-f0-9]{64}  portfolio-ui-design-site\.zip/);
+  assert.match(sums, /[a-f0-9]{64}  ui-design-source\.zip/);
+  assert.match(sums, /[a-f0-9]{64}  ui-design-site\.zip/);
   assert.match(sums, /[a-f0-9]{64}  manifest\.json/);
 });
 

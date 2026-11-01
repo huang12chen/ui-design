@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" data-motion="off">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10161b">
+  <title>Motion & Matter — interaction study</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+</head>
+<body data-mode="tide">
+  <header class="topbar wrap">
+    <a class="brand" href="./" aria-label="Motion and Matter, start"><span class="brand-mark" aria-hidden="true">✳</span><span>MOTION<br>&amp; MATTER</span></a>
+    <span class="top-label">AN INTERACTION STUDY <span> / 01—05</span></span>
+    <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false"><span class="toggle-icon" aria-hidden="true"><i></i><i></i></span><span id="motion-label">Motion off</span></button>
+  </header>
+
+  <main>
+    <section class="intro wrap" aria-labelledby="title">
+      <div class="intro-copy">
+        <p class="eyebrow"><span class="status-dot"></span> A LITTLE STUDY IN MOVEMENT</p>
+        <h1 id="title">Give ideas<br><em>room to move.</em></h1>
+        <p class="intro-text">A small playground for expressive interfaces. Change the mood, play with the light, and see how motion changes the feeling.</p>
+        <a class="jump" href="#playground">Explore the study <span aria-hidden="true">↘</span></a>
+      </div>
+      <div class="intro-index" aria-hidden="true"><span>FORM</span><span>FEELING</span><span>FUNCTION</span><b>✳</b></div>
+    </section>
+
+    <section class="playground wrap" id="playground" aria-label="Interactive motion study">
+      <div class="section-heading"><span>01 / SET THE MOOD</span><span>INTERACTIVE STUDY — NO AI MODEL</span></div>
+      <div class="workbench">
+        <div class="controls">
+          <div class="control-head"><span>MOODBOARD</span><span>✳</span></div>
+          <h2>Three ways<br>to feel.</h2>
+          <p>Same interaction, different expression. Choose a mood to reshape the scene.</p>
+          <div class="moods" aria-label="Choose a mood">
+            <button type="button" class="mood" data-select="tide" aria-pressed="true"><span class="mood-swatch tide"></span><span><strong>Tidal</strong><small>soft / fluid / quiet</small></span><b aria-hidden="true">↗</b></button>
+            <button type="button" class="mood" data-select="flare" aria-pressed="false"><span class="mood-swatch flare"></span><span><strong>Flare</strong><small>bright / bold / warm</small></span><b aria-hidden="true">↗</b></button>
+            <button type="button" class="mood" data-select="orbit" aria-pressed="false"><span class="mood-swatch orbit"></span><span><strong>Orbit</strong><small>vivid / kinetic / electric</small></span><b aria-hidden="true">↗</b></button>
+          </div>
+          <label class="range-label" for="intensity"><span>LIGHT INTENSITY</span><output id="intensity-value" for="intensity">70%</output></label>
+          <input id="intensity" type="range" min="20" max="100" value="70">
+          <div class="range-scale"><span>SUBTLE</span><span>RADIANT</span></div>
+        </div>
+        <div class="stage" id="stage">
+          <div class="stage-light" aria-hidden="true"></div>
+          <div class="stage-top"><span>LIVE CANVAS <span class="stage-dot">●</span></span><span>DRAG THE SLIDER / CHANGE THE MOOD</span></div>
+          <div class="artwork" aria-hidden="true"><div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><div class="orb-halo"></div><div class="orb-float"><div class="orb"></div></div><span class="art-star">✳</span><span class="art-index">( 01 )</span></div>
+          <div class="stage-bottom"><div><span>SELECTED FEELING</span><strong id="mood-name">Tidal</strong></div><p id="mood-description">A little room to breathe.</p><span class="stage-symbol" aria-hidden="true">↗</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="comparison wrap" aria-labelledby="comparison-title">
+      <div class="section-heading"><span>02 / TOUCH AND COMPARE</span><span>ONE COMPOSITION, TWO TREATMENTS</span></div>
+      <div class="comparison-layout">
+        <div class="comparison-copy"><p class="eyebrow">A DIRECT GESTURE</p><h2 id="comparison-title">Find the<br><em>balance.</em></h2><p id="compare-help">Move the divider to compare two color treatments. Drag with a finger or mouse, or use the arrow keys.</p><p class="compare-readout">COLOR REVEALED <output id="compare-value" for="compare-range">50%</output></p></div>
+        <div class="compare-frame" id="compare-frame">
+          <div class="print print-muted" aria-hidden="true"><span class="print-overline">FIELD NOTES / 01</span><div class="print-orbit"></div><strong>SHIFT<br>THE<br>LIGHT</strong><small>A STUDY IN COLOR &amp; MOVEMENT</small></div>
+          <div class="print print-color" aria-hidden="true"><span class="print-overline">FIELD NOTES / 01</span><div class="print-orbit"></div><strong>SHIFT<br>THE<br>LIGHT</strong><small>A STUDY IN COLOR &amp; MOVEMENT</small></div>
+          <span class="compare-line" aria-hidden="true"></span><span class="compare-handle" aria-hidden="true">↔</span>
+          <input id="compare-range" type="range" min="0" max="100" value="50" aria-label="Reveal color treatment" aria-describedby="compare-help">
+        </div>
+      </div>
+    </section>
+
+    <section class="gesture wrap" aria-labelledby="gesture-title">
+      <div class="section-heading"><span>03 / HOLD AND RELEASE</span><span>A SMALL, REVERSIBLE GESTURE</span></div>
+      <div class="gesture-layout"><div><p class="eyebrow">A SMALL GESTURE</p><h2 id="gesture-title">Give it<br><em>a pulse.</em></h2><p id="hold-help">Press and hold the circle to send a visual pulse. Release early to cancel. You can also use the button below.</p><button class="pulse-now" id="pulse-now" type="button">Send a pulse <span aria-hidden="true">↗</span></button><p class="pulse-status" id="pulse-status" role="status">No pulses sent.</p></div>
+        <div class="gesture-stage"><div class="pulse-echo" id="pulse-echo" aria-hidden="true"></div><button class="hold-button" id="hold-button" type="button" aria-describedby="hold-help"><span class="hold-center"><span aria-hidden="true">↗</span><strong id="hold-label">HOLD TO SEND</strong></span></button><span class="gesture-caption">LOCAL VISUAL DEMO / NO MESSAGE SENT</span></div>
+      </div>
+    </section>
+
+    <section class="arrange wrap" aria-labelledby="arrange-title">
+      <div class="section-heading"><span>04 / REARRANGE THE RHYTHM</span><span>TRY A DIFFERENT SEQUENCE</span></div>
+      <div class="arrange-head"><div><h2 id="arrange-title">Order changes <em>everything.</em></h2><p>Choose a sequence. The same pieces find a new rhythm.</p></div><div class="order-controls" aria-label="Choose a sequence"><button type="button" data-order="flow" aria-pressed="true">Flow</button><button type="button" data-order="contrast" aria-pressed="false">Contrast</button></div></div>
+      <div class="note-grid" id="notes">
+        <article class="note note-a" data-note="form"><div><span>01 / FORM</span><span>↗</span></div><h3>Make space<br>for curiosity.</h3><p>Shape and motion can invite a closer look.</p></article>
+        <article class="note note-b" data-note="feeling"><div><span>02 / FEELING</span><span>✳</span></div><h3>Give it<br>a little soul.</h3><p>A small gesture can change how a product feels.</p></article>
+        <article class="note note-c" data-note="function"><div><span>03 / FUNCTION</span><span>↗</span></div><h3>Keep the<br>purpose clear.</h3><p>Every state still works when the movement stops.</p></article>
+      </div>
+      <p class="sequence-status" id="sequence-status" aria-live="polite">Current sequence: form, feeling, function.</p>
+    </section>
+  </main>
+  <footer class="footer wrap"><p>05 / MADE TO BE EXPLORED</p><p>Original CSS and browser animation. Fictional interface; no model or external service.</p><a href="#title">Back to top ↑</a></footer>
+</body>
+</html>
