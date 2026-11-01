@@ -42,7 +42,7 @@ const compliant = {
   'styles.css': `:root { --fs-body: 17px; --fs-small: 13px; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
 a:focus-visible, [tabindex]:focus-visible { outline: 3px solid black; }
-body { font-size: var(--fs-body); }
+body { font-family: sans-serif; font-size: var(--fs-body); }
 p { font-size: var(--fs-body); }
 `
 };
@@ -360,7 +360,7 @@ if (new URLSearchParams(location.search).get('lang') === 'zh') {
   'styles.css': `:root { --fs-body: 17px; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
 a:focus-visible, [tabindex]:focus-visible { outline: 3px solid black; }
-body { font-size: var(--fs-body); }
+body { font-family: sans-serif; font-size: var(--fs-body); }
 /* The locale switch lands: a Chinese root does carry --track-scale: 0. */
 :root { --track-scale: 1; }
 :root[lang^="zh"] { --track-scale: 0; }
