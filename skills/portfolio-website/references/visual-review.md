@@ -1,6 +1,6 @@
 # Visual review
 
-Judging a portfolio from source files misses most of what matters. Layout, contrast, font fallback, motion timing, and cropping only exist once the page renders. Look at the rendered page, at more than one width, before calling the work done.
+Scope: this is a portfolio case study. Its stylistic prescriptions and numeric heuristics apply only when justified by the current task; preserve applicable accessibility and functional checks. See [general visual review](general-visual-review.md). Judging a portfolio from source files misses most of what matters. Layout, contrast, font fallback, motion timing, and cropping only exist once the page renders. Look at the rendered page, at more than one width, before calling the work done.
 
 ## Record what you actually looked at
 

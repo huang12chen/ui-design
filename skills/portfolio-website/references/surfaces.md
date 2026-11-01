@@ -1,6 +1,6 @@
 # Surface, light and depth
 
-A page reads as expensive or cheap mostly at its edges: where one surface stops and the next begins, and whether that boundary was drawn, lit, or left to a framework default. "Shadow" is the least-specified word in portfolio work — [visual direction](visual-direction.md) forbids one shadow on every card but never says what a second one would be made of. Nothing here is a value. Every mechanism below is derived from the material and then measured on the built page.
+Scope: this is a portfolio case study. Its stylistic prescriptions and numeric heuristics apply only when justified by the current task; preserve applicable accessibility and functional checks. See [general visual review](general-visual-review.md). A page reads as expensive or cheap mostly at its edges: where one surface stops and the next begins, and whether that boundary was drawn, lit, or left to a framework default. "Shadow" is the least-specified word in portfolio work — [visual direction](visual-direction.md) forbids one shadow on every card but never says what a second one would be made of. Nothing here is a value. Every mechanism below is derived from the material and then measured on the built page.
 
 Start by adding one line to the direction statement in `DESIGN.md`: where the light is, how hard it is, and how many surfaces the material actually stacks. A page with no recorded light source cannot pass any check in this file, because there is nothing to compare the pixels against.
 

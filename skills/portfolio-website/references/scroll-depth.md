@@ -1,6 +1,6 @@
 # Depth and spectacle
 
-Movement, layering, and three dimensions are the fastest way to make a page look expensive, and the fastest way to make a portfolio say nothing. A reader who finishes a scroll sequence and learned nothing about the person has been charged attention for decoration, and experienced reviewers now read that as generated.
+Scope: this is a portfolio case study. Its stylistic prescriptions and numeric heuristics apply only when justified by the current task; preserve applicable accessibility and functional checks. See [general visual review](general-visual-review.md). Movement, layering, and three dimensions are the fastest way to make a page look expensive, and the fastest way to make a portfolio say nothing. A reader who finishes a scroll sequence and learned nothing about the person has been charged attention for decoration, and experienced reviewers now read that as generated.
 
 Depth is worth building when the material has something a still layout cannot show: sequence, scale, thickness, or state over time. An incident that unfolded across four hours can be scrubbed. A vessel has a wall thickness. A migration has an ordering. A photograph has a depth of field. A résumé with six bullet points does not.
 

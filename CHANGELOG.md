@@ -3,6 +3,8 @@
 ## 1.4.0 — 2026-11-01
 
 - Expand the Skill to brand sites, shops, dashboards, AI interfaces and portfolios. Existing `portfolio-website` installations and invocation remain compatible.
+- Add general visual review guidance and mark the older portfolio rules as context-dependent; self-check findings retain their exit codes and must be assessed for applicability.
+- Make the standalone examples' skip targets focusable and give the dashboard table a caption and column scopes.
 - Add four fictional, standalone examples with different visual directions and working local interactions. The service brand does not send enquiries, the shop does not process orders, and the writing interface uses a local template, not an AI model.
 - Fix the portfolio's scrolling note covering its disclosure, and add a browser regression across both languages and multiple widths.
 - Return exit code 2 when a requested browser cannot start or a route cannot be measured. Do not silently replace an explicitly requested browser with another one.

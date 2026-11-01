@@ -33,6 +33,7 @@ test('a requested browser that cannot start never returns a successful CLI verdi
     { encoding: 'utf8', timeout: 30000, windowsHide: true });
   assert.equal(staticOnly.status, 0, staticOnly.stdout + staticOnly.stderr);
   assert.match(staticOnly.stdout, /static checks measured and clean/i);
+  assert.match(staticOnly.stdout, /portfolio-derived heuristics; review applicability/i);
   const missingBinary = spawnSync(process.execPath, [selfcheck, fixture, '--chrome', join(root, 'missing-browser-binary'), '--json'],
     { encoding: 'utf8', timeout: 30000, windowsHide: true });
   assert.equal(missingBinary.status, 2, 'an explicitly missing binary must not fall back to a different browser');
@@ -51,6 +52,20 @@ test('a missing site directory reports that the audit could not run', () => {
     assert.equal(run.status, 2, run.stdout + run.stderr);
     if (format.length) assert.ok(JSON.parse(run.stdout).error);
     else assert.match(run.stdout, /RESULT: could not finish/);
+  }
+});
+
+test('a rule finding keeps exit code 1 and asks the reader to assess applicability', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'selfcheck-finding-'));
+  try {
+    await writeFile(join(dir, 'index.html'), '<!doctype html><html lang="en"><body><p>No heading.</p></body></html>');
+    const run = spawnSync(process.execPath, [join(skill, 'scripts', 'selfcheck.mjs'), dir, '--static-only'],
+      { encoding: 'utf8', timeout: 30000, windowsHide: true });
+    assert.equal(run.status, 1, run.stdout + run.stderr);
+    assert.match(run.stdout, /H1_COUNT/);
+    assert.match(run.stdout, /review applicability and fix confirmed issues/i);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
   }
 });
 

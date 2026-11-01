@@ -1,6 +1,6 @@
 # Component anatomy
 
-Three of the findings in the last blind review were not taste failures. Nobody chose ragged card baselines, or a 178px nav, or a table with its argument column cut off — the components were simply missing parts, and the page shipped as half-built. Taste is hard to teach; anatomy is a list. This file is that list, plus the rules that decide where a part's edge goes when a component is one of a set.
+Scope: this is a portfolio case study. Its stylistic prescriptions and numeric heuristics apply only when justified by the current task; preserve applicable accessibility and functional checks. See [general visual review](general-visual-review.md). Three of the findings in the last blind review were not taste failures. Nobody chose ragged card baselines, or a 178px nav, or a table with its argument column cut off — the components were simply missing parts, and the page shipped as half-built. Taste is hard to teach; anatomy is a list. This file is that list, plus the rules that decide where a part's edge goes when a component is one of a set.
 
 Every claim below is something a script can measure on the rendered page. An anatomy defect produces no console error and reads as "not quite finished" to every reviewer who looks.
 

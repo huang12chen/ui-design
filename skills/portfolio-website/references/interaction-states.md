@@ -1,6 +1,6 @@
 # Interaction states
 
-A component is finished when every state it can be in has been designed. Generated output ships rest and hover, and calls that a button — the missing states are where a portfolio reads as half-built, and they are also where a real reader gets stuck. The complaint "it lacks premium micro-interaction and press feedback" is almost never about animation quality; it is about states that do not exist and about a press that produces no measurable displacement.
+Scope: this is a portfolio case study. Its stylistic prescriptions and numeric heuristics apply only when justified by the current task; preserve applicable accessibility and functional checks. See [general visual review](general-visual-review.md). A component is finished when every state it can be in has been designed. Generated output ships rest and hover, and calls that a button — the missing states are where a portfolio reads as half-built, and they are also where a real reader gets stuck. The complaint "it lacks premium micro-interaction and press feedback" is almost never about animation quality; it is about states that do not exist and about a press that produces no measurable displacement.
 
 Every mechanism below pairs with something a script or a reviewer can compute on the built page. A state you cannot observe is a state you did not build.
 

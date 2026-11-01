@@ -77,7 +77,7 @@ For a compatible static build, run this from the installed Skill directory:
 node scripts/selfcheck.mjs <built-site-dir>
 ```
 
-Exit `0` means the requested checks found no issue, `1` means a measurable defect was found, and `2` means the requested checks could not finish. `--static-only` explicitly skips the browser. Some rules were developed for portfolios and may not fit every product; report unmeasured checks and judge false positives. An automated pass does not replace seeing the page and exercising its main flows.
+Exit `0` means the measured rules found no issues, `1` means one or more rule findings, and `2` means the requested checks could not finish. `--static-only` explicitly skips the browser. Some rules were developed for portfolios and may not fit every product; assess applicability, fix confirmed issues, and report unmeasured checks or false positives. An automated pass does not replace seeing the page and exercising its main flows.
 
 Repository checks:
 

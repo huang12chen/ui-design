@@ -14,7 +14,8 @@ const usage = `Usage: node selfcheck.mjs <built-site-dir> [options]
   --json              print the full report instead of the verdict table
   --map               list every check code beside the reference line that states it
 
-Exit codes: 0 measured and clean, 1 measured and defective, 2 could not measure.`;
+Exit codes: 0 no measured findings, 1 one or more rule findings, 2 could not measure.
+Portfolio-derived heuristics require judgment for the current project; a pass is not an aesthetic score.`;
 
 const argv = process.argv.slice(2);
 /* The mapping is read from the checker rather than copied into prose, so a rule that moves takes its
@@ -63,6 +64,7 @@ const out = [];
 const verdict = count => count ? 'FAIL' : 'PASS';
 let hasUnmeasured = Boolean(report.summary.unmeasured?.length);
 out.push('self-check: ' + (report.root?.startsWith('..') ? resolve(process.cwd(), target) : (report.root ?? resolve(process.cwd(), target))));
+out.push('  Scope: portfolio-derived heuristics; review applicability and fix confirmed issues. This is not an aesthetic score.');
 out.push('  ' + report.summary.pages + ' page(s), ' + report.summary.files + ' file(s), ' +
   (report.browserLayer.craft?.routes?.length ?? 0) + ' route(s), ' +
   (report.browserLayer.craft?.executedPasses ?? 0) + ' measurement pass(es)');
@@ -117,7 +119,7 @@ if (report.violations.length) {
 }
 out.push('');
 out.push(incomplete ? '  RESULT: could not finish — ' + incomplete
-  : report.summary.violations ? '  RESULT: ' + report.summary.violations + ' violation(s); fix these before calling the page done'
+  : report.summary.violations ? '  RESULT: ' + report.summary.violations + ' rule finding(s); review applicability and fix confirmed issues'
     : !browser ? '  RESULT: static checks measured and clean; browser checks were skipped.'
     : hasUnmeasured ? '  RESULT: measured checks found no violations; some dimensions were not measured.'
     : '  RESULT: measured and clean. This is evidence for the Check rows it covers, not a judgement of the design.');

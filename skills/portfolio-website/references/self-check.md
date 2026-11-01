@@ -1,6 +1,6 @@
 # Self-check
 
-Every other reference ends its sections with a **Check** row. A Check row is prose, and prose has one failure mode this project has already paid for: a run that reported zero findings while the dimension was physically unmeasurable — the press probe printed PASS because nothing in it could fail. So the instrument ships inside the Skill instead of living in a separate repository.
+This instrument includes portfolio-derived heuristics as well as functional and accessibility checks. Use the [general visual review](general-visual-review.md) for the actual brief, investigate each finding, and fix confirmed issues; a stylistic rule that does not apply is not automatically a defect. Every other reference ends its sections with a **Check** row. A Check row is prose, and prose has one failure mode this project has already paid for: a run that reported zero findings while the dimension was physically unmeasurable — the press probe printed PASS because nothing in it could fail. So the instrument ships inside the Skill instead of living in a separate repository.
 
 ## Run it
 
@@ -14,14 +14,14 @@ Zero dependencies; Node 22 or newer. The browser and craft layers need a local C
 - `--map` — every check code beside the reference line that states it, read from the checker rather than copied into prose.
 - `--json` — the full report, for a script or a diff between two builds.
 
-Exit code 0 means measured and clean, 1 means measured and defective, 2 means the run could not measure. Treat 2 exactly like a failure: it is the case where a report can be empty for the wrong reason.
+Exit code 0 means no findings from the checks that were measured; 1 means one or more rule findings; 2 means the requested run could not be measured. Investigate findings rather than treating every heuristic as a universal defect. Exit 0 is not an aesthetic guarantee, and exit 2 must not be reported as a successful measurement.
 
 ## Three states, not two
 
 | Verdict | What it means | What to do |
 | --- | --- | --- |
 | PASS | The rule was measured on this page and held | Nothing |
-| FAIL | The rule was measured and the page breaks it | Fix the page |
+| FAIL | The rule was measured and the page breaks it | Check applicability and fix confirmed problems; record an inapplicable heuristic |
 | NOT-MEASURED | The instrument could not reach the question | Say so in the handover; never report it as a pass |
 
 The third state is the whole point. A form error that no route submits, a press whose held value never settled, a native control whose chrome the platform paints inside a closed shadow tree — each is a real limit of the instrument, and each must appear beside the zero it would otherwise be mistaken for. A handover that says "all checks pass" while any row reads NOT-MEASURED is describing a measurement that was never made.

@@ -1,6 +1,6 @@
 # Visual direction
 
-Design decisions change what a reader learns about the person. Restraint alone is not a direction: a page can be clean, coherent, and say nothing. Choose a direction that could only belong to this material, then hold it across every screen.
+Scope: this is a portfolio case study. Its stylistic prescriptions and numeric heuristics apply only when justified by the current task; preserve applicable accessibility and functional checks. See [general visual review](general-visual-review.md). Design decisions change what a reader learns about the person. Restraint alone is not a direction: a page can be clean, coherent, and say nothing. Choose a direction that could only belong to this material, then hold it across every screen.
 
 ## Derive form from the material
 
