@@ -1942,7 +1942,9 @@ const browserCandidates = explicit => {
 /** Discovers a CDP-capable binary. Nothing is downloaded and no dependency is installed. */
 export async function findBrowser(explicit) {
   const tried = [];
-  for (const candidate of browserCandidates(explicit)) {
+  // A caller who named a binary must not silently get a different installed browser.
+  const candidates = explicit ? [{ path: String(explicit).replace(/\\/g, '/'), source: '--chrome' }] : browserCandidates(null);
+  for (const candidate of candidates) {
     if (!candidate.path) continue;
     if (candidate.lookup) {
       const located = spawnSync(process.platform === 'win32' ? 'where' : 'which', [candidate.path], { encoding: 'utf8', windowsHide: true, timeout: 8000 });
@@ -2024,7 +2026,7 @@ const cleanup = async (profile, options) => {
   }
 };
 
-class BrowserSession {
+export class BrowserSession {
   constructor(devtools, child, profile, info, binary, source, tried) {
     Object.assign(this, { devtools, child, profile, info, binary, source, tried });
   }
@@ -3080,8 +3082,28 @@ Layer 1 (no browser) always runs. Layer 2 renders pages in Chrome or Edge over C
   --help                        show this text
 
 stdout is the JSON report. Exit code 1 means objectively checkable violations were found; 2 means the
-audit could not run. A browser that cannot be driven reports browser:"unavailable" with a reason and
-never fails Layer 1.`;
+requested audit could not finish. When the browser is unavailable, Layer 1 results remain in the report.`;
+
+/** Return the reason an explicitly requested browser measurement is incomplete. */
+export function browserMeasurementFailure(report, { requireCraft = false } = {}) {
+  const layer = report.browserLayer;
+  if (!layer || layer.browser === 'unavailable' || layer.browser === 'not requested') {
+    return layer?.reason ?? 'The requested browser layer did not run.';
+  }
+  const missing = (layer.pages ?? []).filter(page => !page.measured);
+  if (missing.length) return 'Could not measure ' + missing.map(page => page.file + ': ' + (page.error ?? 'no result')).join('; ');
+  if (!layer.pages?.length) return 'The browser did not measure any routes.';
+  if (requireCraft && !layer.craft?.executedPasses) return 'The requested craft probes did not produce any measurement passes.';
+  return null;
+}
+
+/** Classify a craft probe without treating missing or unknown states as a pass. */
+export function classifyCraftStatus(status) {
+  const value = String(status ?? '').toUpperCase();
+  if (value.startsWith('FAIL') || value.startsWith('FINDINGS')) return 'fail';
+  if (value.startsWith('PASS')) return 'pass';
+  return 'notMeasured';
+}
 
 function parseArguments(argv) {
   const flags = { _: [] };
@@ -3147,7 +3169,7 @@ if (directlyRun) {
       if (flags.out) await writeFile(resolve(process.cwd(), flags.out), json + '\n');
       console.error(`audit: ${report.summary.pages} page(s), ${report.summary.files} file(s), ${report.summary.violations} violation(s); browser=${report.browserLayer.browser}`);
       for (const item of report.violations) console.error(`  ${item.code} ${item.file ?? ''}${item.line ? ':' + item.line : ''} ${item.message}`);
-      if (report.error) process.exitCode = 2;
+      if (report.error || (flags.browser && browserMeasurementFailure(report, { requireCraft: Boolean(flags.craft) }))) process.exitCode = 2;
       else if (report.summary.violations) process.exitCode = 1;
     }
   }

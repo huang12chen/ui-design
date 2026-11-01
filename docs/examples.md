@@ -1,41 +1,37 @@
 # Example requests / 使用示例
 
-[README](../README.en.md) · [中文说明](../README.md) · [安装](install.md)
+[中文说明](../README.md) · [English README](../README.en.md) · [安装 / Install](install.md)
 
-先提供现有材料，再说明给谁看、希望对方做什么，以及哪些内容需要保密。风格可以指定，也可以让智能体根据作品选择。
+先说明目标用户、主要任务、已有内容和需要保密的材料。风格可以指定，也可以让智能体结合实际参考提出方向。
 
-Start with your existing work. Say who the site is for, what they should be able to do, and what should stay private. You can suggest a style or ask the agent to choose one that fits.
+Start with the audience, primary task, existing content, and privacy boundaries. Supply a direction or ask the agent to derive one from the brief.
 
-## A portfolio / 做作品集
+## 品牌商城 / Brand and shop
 
-> 使用 $portfolio-website。我是一名内容编辑，想展示采访、专题和品牌文章。附件里有简历、三篇公开文章和两份选题策划。请选出适合放在首页的内容，展示文章片段，写清我负责的部分，做成给潜在客户看的作品集。
+> 使用 $portfolio-website 为独立茶饮品牌制作商城。顾客需要比较三类产品、选择规格并查看购物袋。品牌希望亲切、有记忆点，但不要套用作品集的布局。没有接入支付的地方明确标注，检查手机和键盘操作。
 
-> Use $portfolio-website. I am a junior architect applying to small studios. I have two built projects, a competition entry, drawings, and process photos. Build a portfolio that shows the drawings clearly and explains my role in each project. Keep client addresses private.
+> Use $portfolio-website to create a shop for an independent tea brand. Customers need to compare three products, choose options, and review a bag. Give the brand its own visual direction. Clearly label any unconnected checkout and test mobile and keyboard use.
 
-## A visual direction / 定一个视觉方向
+## 运营后台 / Operations dashboard
 
-> 使用 $portfolio-website。这次重点在页面本身：先看我给的截图和作品，量出里面真实出现的颜色和作品本身的宽高比，再定字号、留白和按钮形状。手机排版和中文标点一起检查。不要套用你上一次做的那套配色。
+> 使用 $portfolio-website 设计订单处理后台。运营人员要按时间和状态筛选订单、查看详情并找出异常。让筛选条件、数字和列表保持一致，测试空结果和窄屏。
 
-> Use $portfolio-website. This time the design matters as much as the content: read the colours that actually appear in my screenshots and the aspect ratios of the work itself, then decide the type scale, spacing and control shapes. Check the phone layout and the Chinese punctuation too, and do not reuse the palette from the last site you made.
+> Use $portfolio-website for an order-operations dashboard. Staff need filters, a worklist, and an order detail view. Keep metrics and rows consistent, and test empty results and small screens.
 
-## Limited material / 项目不多
+## AI 产品 / AI product
 
-> 使用 $portfolio-website。我正在转行，只有一个比较完整的个人项目和几份课程作业。请先把这个项目讲清楚，展示截图和我做过的取舍。没有客户或商业成绩，不要替我补写。
+> 使用 $portfolio-website 设计一个写作助手界面。用户可以填写需求、编辑建议和查看生成结果。现在没有模型接口，请做本地演示并标清限制；输入修改后，旧结果不能被误认为是新的。
 
-> Use $portfolio-website. I am changing careers and have one substantial personal project plus coursework. Help me show the project, its screenshots, and the decisions I made. I do not have customer or business results to claim.
+> Use $portfolio-website for a writing-assistant interface with editable suggestions and an output area. There is no model endpoint yet, so build a clearly labeled local prototype and make stale output visible after edits.
 
-## A teaching example / 做教学示例
+## 作品集 / Portfolio
 
-> 使用 $portfolio-website。请制作一个虚构人物的作品集，允许编写示例经历和数据，并清楚标注。页面里需要能操作的项目演示。图片使用原创或允许分享的素材，不要引用我私人网站里的简历和雇主图片。
+> 使用 $portfolio-website。我是一名内容编辑，附件里有简历、公开文章和选题策划。请挑选展示内容，写清我的贡献，设计给潜在客户看的作品集；私人联系方式不要公开。
 
-> Use $portfolio-website to build a fictional teaching example. You may invent a persona, career, and sample data, with clear labels. Include working project demos. Use original or shareable images, and keep my private résumé and employer material out of it.
+> Use $portfolio-website. I am an architect applying to small studios. Use my drawings and process material to show the work and explain my role; keep client addresses private.
 
-## Feedback on an existing page / 修改已有页面
+## 修改已有页面 / Improve an existing page
 
-直接描述哪里不顺手，附上页面或截图。例如：
+> 手机滚动时深色提示卡遮住上方说明。请复现问题、检查动效和堆叠关系，修复后在不同宽度实际滚动查看。
 
-> 点击「产品」后只剩一张窄卡片，右边都是空的。请让它展开成大图加说明，切回「全部」时再收回。手机上也要完整显示。
-
-Describe the problem and show the page or screenshot. For example:
-
-> Choosing Product leaves a narrow card and empty columns. Expand it into an image and description, and return to the grid when I select All. Check that it fits on mobile too.
+> On mobile, a dark note covers its preceding explanation while scrolling. Reproduce the issue, inspect the motion and stacking, then verify the fix at different widths.

@@ -16,8 +16,8 @@ The screenshots are the source of truth for the current UI; all three recordings
 
 The MP4 is silent H.264 at 1280 × 840. The GIFs are 960 × 630 and play inline in the README.
 
-录屏使用 Alex 的虚构人物和示例数据。Signal 没有连接电商账号，Briefly 使用本地模板。录像里出现的照片与字体属于重建前的版本，其来源与许可见[素材说明](../examples/alex-lin/dist/ASSETS.md)和[第三方说明](../THIRD_PARTY_NOTICES.md)；当前站点不再包含这些素材。
+录屏使用 Alex 的虚构人物和示例数据。Signal 没有连接电商账号，Briefly 使用本地模板。录像里出现的旧版照片与字体的来源和许可见[第三方说明](../THIRD_PARTY_NOTICES.md)；当前站点不再包含这些素材文件。
 
-The recordings use Alex's fictional persona and sample data. Signal has no commerce-account connection; Briefly uses local templates. The photographs and bundled font visible in these clips belonged to the pre-rebuild version; their origin and licences are covered by the [asset notes](../examples/alex-lin/dist/ASSETS.md) and [third-party notices](../THIRD_PARTY_NOTICES.md). The current site ships neither.
+The recordings use Alex's fictional persona and sample data. Signal has no commerce-account connection; Briefly uses local templates. The photographs and font visible in these clips belonged to the pre-rebuild version; their origin and licences are listed in the [third-party notices](../THIRD_PARTY_NOTICES.md). The current site ships neither asset file.
 
 要录自己的教程，可以参考[教学提纲](recording-guide.md)。For your own tutorial, see the [teaching outline](recording-guide.md).

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7efdf">
+  <title>Kora Cacao — a little daily ritual</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="announcement">A fictional shop demo · no orders or payments</div>
+<header class="header wrap">
+  <a class="wordmark" href="#top" aria-label="Kora Cacao home">kora<span>✳</span></a>
+  <nav aria-label="Main navigation"><a href="#shop">Shop cacao</a><a href="#story">Our approach</a></nav>
+  <button class="cart-trigger" type="button" id="cart-open" aria-haspopup="dialog">Bag <span id="cart-count">0</span></button>
+</header>
+<main id="main">
+  <section class="hero wrap" id="top" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow">A GOOD THING, EVERY DAY <span>01 / 03</span></p>
+      <h1 id="hero-title">Make room<br>for <em>good.</em></h1>
+      <p class="intro">A little cacao, a lot of comfort. Meet the easy ritual for slow mornings and busy afternoons.</p>
+      <a class="pill" href="#shop">Find your cacao <span aria-hidden="true">↗</span></a>
+      <p class="hero-note"><span aria-hidden="true">✳</span> Thoughtfully imagined. Made for the moment.</p>
+    </div>
+    <div class="hero-art" aria-label="Illustration of a cacao package and cup">
+      <div class="sun" aria-hidden="true"></div>
+      <p class="art-note">YOUR DAILY<br>PAUSE</p>
+      <div class="pack" aria-hidden="true"><span>kora✳</span><strong>THE<br>DAILY<br>BLEND</strong><small>CACAO FOR EVERY DAY</small></div>
+      <div class="cup" aria-hidden="true"><span>✳</span></div>
+      <div class="stamp" aria-hidden="true">a little<br>better<br>every day</div>
+      <p class="art-index">01 — THE DAILY BLEND</p>
+    </div>
+  </section>
+  <section class="shop wrap" id="shop" aria-labelledby="shop-title">
+    <div class="section-intro"><div><p class="eyebrow">THE COLLECTION / 03</p><h2 id="shop-title">Pick your moment.</h2></div><p>Three ways to make an ordinary day feel a little more yours.</p></div>
+    <div class="products">
+      <article class="product"><div class="product-art art-coral"><div class="mini-pack"><span>kora✳</span><strong>DAILY<br>BLEND</strong><small>SMOOTH &amp; DEEP</small></div><span class="product-number">01</span></div><div class="product-info"><div><h3>The Daily Blend</h3><p>Rich, mellow, ready for anything</p></div><span>$18</span></div><button class="add-button" data-add="daily" type="button">Add to bag <span aria-hidden="true">+</span></button></article>
+      <article class="product"><div class="product-art art-yellow"><div class="mini-pack mini-yellow"><span>kora✳</span><strong>GOLDEN<br>HOUR</strong><small>WARM &amp; SPICED</small></div><span class="product-number">02</span></div><div class="product-info"><div><h3>Golden Hour</h3><p>Warm spice and a softer finish</p></div><span>$20</span></div><button class="add-button" data-add="golden" type="button">Add to bag <span aria-hidden="true">+</span></button></article>
+      <article class="product"><div class="product-art art-blue"><div class="mini-pack mini-blue"><span>kora✳</span><strong>EVENING<br>WIND</strong><small>CALM &amp; COZY</small></div><span class="product-number">03</span></div><div class="product-info"><div><h3>Evening Wind</h3><p>A gentle end to the day</p></div><span>$19</span></div><button class="add-button" data-add="evening" type="button">Add to bag <span aria-hidden="true">+</span></button></article>
+    </div>
+  </section>
+  <section class="story" id="story"><div class="wrap story-inner"><p class="eyebrow">A SMALL PAUSE GOES A LONG WAY</p><h2>Good things don't<br>have to be complicated<span>✳</span></h2><p>A warm cup is a small invitation to slow down. This fictional brand explores a bright, product-led way to tell that story.</p><a href="#shop">Back to the collection ↑</a></div></section>
+</main>
+<footer class="footer wrap"><a class="wordmark" href="#top">kora<span>✳</span></a><p>Fictional brand and products · UI demonstration</p><a href="#top">Back to top ↑</a></footer>
+<dialog id="cart" aria-labelledby="cart-title"><div class="dialog-head"><div><p class="eyebrow">YOUR SELECTION</p><h2 id="cart-title">Your bag <span id="dialog-count">0</span></h2></div><button type="button" id="cart-close" aria-label="Close bag">×</button></div><div id="cart-items" class="cart-items"></div><div class="cart-footer"><div><span>Subtotal</span><strong id="cart-total">$0</strong></div><p>Demo only. No payment or order is processed.</p><button type="button" class="pill" id="continue-shopping">Continue browsing</button></div></dialog>
+<p id="announcement" class="sr-only" aria-live="polite"></p>
+</body>
+</html>

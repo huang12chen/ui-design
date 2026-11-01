@@ -51,30 +51,18 @@
   }
 }
 
-/* --- parallax only on the console artifact's own layers (bezel / screen / annotation) --- */
+/* --- parallax on the console artifact's own layers --- */
 @supports (animation-timeline: view()) {
   :root[data-motion="on"] [data-parallax-root] .console-mock { animation: mock-shift linear both; animation-timeline: view(block); animation-range: cover; }
   :root[data-motion="on"] [data-parallax-root] .console-bezel { animation: bezel-shift linear both; animation-timeline: view(block); animation-range: cover; }
-  :root[data-motion="on"] [data-parallax-root] .console-insight { animation: insight-shift linear both; animation-timeline: view(block); animation-range: cover; }
   :root[data-motion="on"] [data-parallax-root][data-depth-idle] .console-mock,
   :root[data-motion="on"] [data-parallax-root][data-depth-idle] .console-bezel,
   :root[data-motion="on"] [data-parallax-root][data-depth-idle] .console-insight { animation-play-state: paused; }
-  /* Displacement stays within 8% of viewport and only transform is touched. Three layers at three
-     rates, because two plates drifting over a stationary card reads as a wobble rather than as
-     depth. The rates are read off the artifact instead of chosen for feel: at rest the bezel sits
-     7px below the card's bottom edge and the annotation plate 18px below it, so the bezel travels
-     twice its own offset (14px), the annotation twice its own (36px), and the screen rides the card
-     at half the annotation's offset (9px). The gaps between the layers therefore open by exactly the
-     distance that separates them, and the depth is the mock's own geometry. */
-  /* All three layers travel upward only. The stage caption is the mock's next sibling in normal flow,
-     so its first line begins 14px under the card's bottom edge. A symmetric ± excursion spent half of
-     every scroll cycle pushing a plate down into the caption: measured at 390px, the bezel covered
-     "Growth has a rhythm —" and "so the next move shows." by more than a fifth of their line boxes, in
-     both locales, at one scroll offset. Upward-only keeps the separation the depth needs and nothing
-     reaches below its laid-out position, where the type is. */
+  /* The note travels with the card rather than moving independently: on narrow screens it is in
+     normal flow immediately after the disclosure, and an upward translation covers that text.
+     The bezel still moves against the card, while the card and its contents remain together. */
   @keyframes mock-shift { from { transform: translateY(0); } to { transform: translateY(-9px); } }
   @keyframes bezel-shift { from { transform: translateY(0); } to { transform: translateY(-14px); } }
-  @keyframes insight-shift { from { transform: translateY(0); } to { transform: translateY(-36px); } }
 }
 
 /* --- route transitions: cross-document view transitions, no JS required.

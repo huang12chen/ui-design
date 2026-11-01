@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relay — dispatch overview</title><link rel="stylesheet" href="./styles.css"><script src="./app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="app-shell">
+  <aside class="sidebar"><a class="brand" href="#main"><span class="brand-mark">r.</span> relay <small>OPERATIONS</small></a><p class="nav-label">WORKSPACE</p><nav aria-label="Workspace"><a href="#main" class="selected"><span>◫</span> Overview</a><a href="#shipments"><span>▤</span> Shipments</a></nav><div class="sidebar-bottom"><span class="status-dot"></span><div><strong>Sample workspace</strong><small>Data is fictional</small></div></div></aside>
+  <div class="workspace">
+    <header class="topbar"><span>Workspace <b>/</b> <strong>Overview</strong></span><span class="demo-chip"><i></i> DEMO DATA</span></header>
+    <main id="main">
+      <div class="page-title"><div><p class="overline">MONDAY OPERATIONS</p><h1>Dispatch overview</h1><p>Find the shipments that need a closer look.</p></div><span class="as-of">Sample data · updated today</span></div>
+      <section class="filters" aria-label="Filter the overview"><label>Time window<select id="period"><option value="7">Last 7 days</option><option value="30">Last 30 days</option></select></label><label>Status<select id="status"><option value="all">All statuses</option><option value="attention">Needs attention</option><option value="transit">In transit</option><option value="delivered">Delivered</option></select></label><label class="search">Search shipments<input id="search" type="search" placeholder="ID, destination or customer"></label></section>
+      <div class="summary" aria-live="polite"><article><p>SHIPMENTS IN VIEW</p><strong id="metric-total">0</strong><span>Matching current filters</span></article><article><p>NEEDS ATTENTION</p><strong id="metric-attention">0</strong><span>Review before dispatch</span></article><article><p>IN TRANSIT</p><strong id="metric-transit">0</strong><span>On the way to customers</span></article><article><p>DELIVERED</p><strong id="metric-delivered">0</strong><span>Completed shipments</span></article></div>
+      <div class="content-grid"><section class="shipments panel" id="shipments" aria-labelledby="shipments-title"><div class="panel-head"><div><p class="overline">LIVE WORKLIST / SAMPLE</p><h2 id="shipments-title">Shipments</h2></div><span id="result-count" class="result-count"></span></div><p class="table-hint">Select a shipment to inspect its details.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Shipments table"><table><thead><tr><th>Shipment</th><th>Destination</th><th>Status</th><th>Updated</th><th><span class="sr-only">Details</span></th></tr></thead><tbody id="rows"></tbody></table></div><p class="empty" id="empty" hidden>No shipments match these filters. Change the search or status to see more.</p></section>
+      <aside class="detail panel" aria-labelledby="detail-title"><div class="panel-head"><div><p class="overline">SHIPMENT DETAIL</p><h2 id="detail-title">Select a shipment</h2></div><span class="detail-icon">↗</span></div><div id="detail-body"><p class="detail-placeholder">Choose a row to see its destination and next step without losing your place.</p><div class="placeholder-graphic" aria-hidden="true"><span></span><span></span><span></span></div></div></aside></div>
+      <div class="footnote"><span>Filters update the summary and the worklist together.</span><span>Fictional data · no live integrations</span></div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

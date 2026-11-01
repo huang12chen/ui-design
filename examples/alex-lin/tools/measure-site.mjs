@@ -7,8 +7,10 @@ import { readdirSync, existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { createStaticServer } from '../../../scripts/serve.mjs';
 
-const require = createRequire('C:/Users/34319/AppData/Roaming/npm/node_modules/@playwright/cli/package.json');
-const { chromium } = require('playwright');
+const require = createRequire(import.meta.url);
+let chromium;
+try { ({ chromium } = require('playwright')); }
+catch { throw new Error('This optional measurement script needs Playwright installed in the project. No browser is downloaded automatically.'); }
 
 const OUT = process.argv.includes('--screenshots')
   ? process.argv[process.argv.indexOf('--screenshots') + 1]

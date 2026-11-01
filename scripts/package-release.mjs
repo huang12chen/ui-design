@@ -7,6 +7,7 @@ import { checkSite } from './check.mjs';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const siteDirectory = 'examples/alex-lin/dist';
+const exampleDirectories = ['examples/alex-lin/tools', 'examples/kora-shop', 'examples/dispatch-dashboard', 'examples/draft-studio'];
 const publicFiles = [
   '.gitignore', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'package.json', 'DESIGN.md', 'README.md', 'README.en.md', 'README.zh-CN.md',
   'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'SECURITY.md', 'CHANGELOG.md',
@@ -14,12 +15,12 @@ const publicFiles = [
   'docs/media/gallery.gif', 'docs/media/story.gif', 'docs/media/portfolio-demo.mp4',
   'docs/deploy.md', 'docs/deploy.zh-CN.md', 'docs/recording-guide.md', 'docs/sample-resume.md',
   'docs/packages.md', 'docs/packages.zh-CN.md',
-  'scripts/serve.mjs', 'scripts/check.mjs', 'scripts/package-release.mjs',
-  'tests/demos.test.mjs', 'tests/site.test.mjs', 'tests/release.test.mjs',
+  'scripts/serve.mjs', 'scripts/serve-examples.mjs', 'scripts/check.mjs', 'scripts/package-release.mjs', 'scripts/audit-site.mjs', 'scripts/craft-probes.mjs', 'examples/index.html',
+  'tests/demos.test.mjs', 'tests/site.test.mjs', 'tests/release.test.mjs', 'tests/audit.test.mjs', 'tests/craft.test.mjs', 'tests/selfcheck.test.mjs', 'tests/mobile-occlusion.test.mjs', 'tests/fixtures/browser/clean/index.html',
   'deploy/nginx.conf', '.github/workflows/pages.yml', '.github/workflows/ci.yml',
   '.github/ISSUE_TEMPLATE/bug_report.yml', '.github/ISSUE_TEMPLATE/feature_request.yml', '.github/pull_request_template.md'
 ];
-const screenshotFiles = ['home-desktop.png', 'story-desktop.png', 'growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png'].map(name => 'docs/screenshots/' + name);
+const screenshotFiles = ['home-desktop.png', 'story-desktop.png', 'growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png', 'shop-desktop.png', 'dashboard-desktop.png', 'draft-desktop.png', 'shop-mobile.png', 'dashboard-mobile.png', 'draft-mobile.png'].map(name => 'docs/screenshots/' + name);
 const skillDirectories = ['skills/portfolio-website'];
 const requiredFiles = new Set(publicFiles);
 const optionalScreenshots = [];
@@ -277,6 +278,10 @@ export async function createRelease({ root = projectRoot, allowIncomplete = fals
         if (!selected.has(name + '/' + entry)) warnings.push('Required Skill entry not present: ' + name + '/' + entry);
       }
     } else warnings.push('Required Skill directory not present: ' + name);
+  }
+  for (const name of exampleDirectories) {
+    if (await checkedPath(base, name, visited, true)) await collectTree(base, name, selected, visited);
+    else warnings.push('Required example directory not present: ' + name);
   }
   if (warnings.length && !allowIncomplete) throw new Error('Release incomplete:\n' + warnings.join('\n'));
   await collectTree(base, siteDirectory, selected, visited);

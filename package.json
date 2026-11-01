@@ -1,11 +1,12 @@
 {
   "name": "portfolio-ui-design",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "type": "module",
-  "description": "A portfolio Skill with a bilingual fictional website example",
+  "description": "A UI design Skill with fictional website and product examples",
   "scripts": {
     "dev": "node scripts/serve.mjs",
+    "dev:examples": "node scripts/serve-examples.mjs",
     "check": "node scripts/check.mjs",
     "test": "node --test tests/*.test.mjs",
     "audit": "node scripts/audit-site.mjs examples/alex-lin/dist",

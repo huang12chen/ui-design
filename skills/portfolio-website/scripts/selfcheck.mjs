@@ -5,7 +5,7 @@
    prose checklist cannot distinguish. Nothing here re-implements a rule: audit-site.mjs owns them,
    and craft-probes.mjs owns the craft ones. */
 import { resolve } from 'node:path';
-import { auditSite, RULES } from './audit-site.mjs';
+import { auditSite, browserMeasurementFailure, classifyCraftStatus, RULES } from './audit-site.mjs';
 
 const usage = `Usage: node selfcheck.mjs <built-site-dir> [options]
 
@@ -30,12 +30,16 @@ if (!argv.length || argv.includes('--help') || argv.includes('-h')) {
   console.error(usage);
   process.exit(2);
 }
-const target = argv.find(arg => !arg.startsWith('-'));
+const chromeIndex = argv.indexOf('--chrome');
+if (chromeIndex >= 0 && (!argv[chromeIndex + 1] || argv[chromeIndex + 1].startsWith('--'))) {
+  console.error('--chrome needs a browser path.\n\n' + usage);
+  process.exit(2);
+}
+const target = argv.find((arg, index) => !arg.startsWith('-') && (chromeIndex < 0 || index !== chromeIndex + 1));
 if (!target) {
   console.error('A built-site directory is required.\n\n' + usage);
   process.exit(2);
 }
-const chromeIndex = argv.indexOf('--chrome');
 const chrome = chromeIndex >= 0 ? argv[chromeIndex + 1] : null;
 const browser = !argv.includes('--static-only');
 
@@ -47,14 +51,18 @@ try {
   process.exit(2);
 }
 
+const incomplete = report.error ?? (browser ? browserMeasurementFailure(report, { requireCraft: true }) : null);
+const exitCode = incomplete ? 2 : report.summary.violations ? 1 : 0;
+
 if (argv.includes('--json')) {
   process.stdout.write(JSON.stringify(report, null, 2) + '\n');
-  process.exit(report.error ? 2 : report.summary.violations ? 1 : 0);
+  process.exit(exitCode);
 }
 
 const out = [];
 const verdict = count => count ? 'FAIL' : 'PASS';
-out.push('self-check: ' + (report.root.startsWith('..') ? resolve(process.cwd(), target) : report.root));
+let hasUnmeasured = Boolean(report.summary.unmeasured?.length);
+out.push('self-check: ' + (report.root?.startsWith('..') ? resolve(process.cwd(), target) : (report.root ?? resolve(process.cwd(), target))));
 out.push('  ' + report.summary.pages + ' page(s), ' + report.summary.files + ' file(s), ' +
   (report.browserLayer.craft?.routes?.length ?? 0) + ' route(s), ' +
   (report.browserLayer.craft?.executedPasses ?? 0) + ' measurement pass(es)');
@@ -63,8 +71,8 @@ out.push('  static        ' + verdict(report.summary.staticViolations).padEnd(5)
   '  structure, packaging, links, locale and budget rules that need no browser');
 if (!browser) {
   out.push('  browser       SKIPPED  --static-only: layout, contrast, occlusion, states and press were not measured');
-} else if (report.browser === 'unavailable') {
-  out.push('  browser       COULD NOT MEASURE  ' + report.browserLayer.reason);
+} else if (incomplete) {
+  out.push('  browser       COULD NOT MEASURE  ' + incomplete);
 } else {
   out.push('  browser       ' + verdict(report.summary.browserViolations).padEnd(5) + '  ' + report.browser);
   /* One row per craft dimension, because a single craft FAIL does not say which question failed.
@@ -72,22 +80,27 @@ if (!browser) {
   const tally = new Map();
   for (const route of report.browserLayer.craft?.routes ?? []) {
     for (const width of Object.keys(route.widths ?? {})) {
-      for (const [dimension, value] of Object.entries(route.widths[width])) {
+      const measurement = route.widths[width];
+      if (String(measurement?.status ?? '').startsWith('NOT-')) {
+        hasUnmeasured = true;
+        out.push('  craft         NOT-MEASURED  ' + route.route + ' at ' + width + 'px: ' + (measurement.reason ?? measurement.status));
+        continue;
+      }
+      for (const [dimension, value] of Object.entries(measurement)) {
         if (!value || typeof value !== 'object' || Array.isArray(value) || !value.status) continue;
         const key = dimension;
         if (!tally.has(key)) tally.set(key, { pass: 0, fail: 0, notMeasured: 0, total: 0 });
         const row = tally.get(key);
         row.total += 1;
-        if (value.status === 'FAIL') row.fail += 1;
-        else if (String(value.status).startsWith('NOT-MEASURABLE')) row.notMeasured += 1;
-        else row.pass += 1;
+        row[classifyCraftStatus(value.status)] += 1;
       }
     }
   }
   for (const [dimension, row] of tally) {
-    const state = row.fail ? 'FAIL' : row.pass ? 'PASS' : 'NOT-MEASURED';
+    if (row.notMeasured) hasUnmeasured = true;
+    const state = row.fail ? 'FAIL' : row.notMeasured ? (row.pass ? 'PARTIAL' : 'NOT-MEASURED') : 'PASS';
     out.push('  ' + dimension.padEnd(13) + ' ' + state.padEnd(5) + '  ' + row.pass + ' pass / ' +
-      row.notMeasured + ' not-measurable / ' + row.total + ' measured pass(es)');
+      row.notMeasured + ' not-measured / ' + row.total + ' observation(s)');
   }
 }
 if (report.summary.unmeasured?.length) {
@@ -103,8 +116,10 @@ if (report.violations.length) {
   }
 }
 out.push('');
-out.push(report.error ? '  RESULT: could not finish — ' + report.error
+out.push(incomplete ? '  RESULT: could not finish — ' + incomplete
   : report.summary.violations ? '  RESULT: ' + report.summary.violations + ' violation(s); fix these before calling the page done'
+    : !browser ? '  RESULT: static checks measured and clean; browser checks were skipped.'
+    : hasUnmeasured ? '  RESULT: measured checks found no violations; some dimensions were not measured.'
     : '  RESULT: measured and clean. This is evidence for the Check rows it covers, not a judgement of the design.');
 process.stdout.write(out.join('\n') + '\n');
-process.exit(report.error ? 2 : report.summary.violations ? 1 : 0);
+process.exit(exitCode);

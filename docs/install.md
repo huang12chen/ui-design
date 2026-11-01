@@ -52,9 +52,9 @@ Look for `portfolio-website`, then confirm it appears in your coding tool's Skil
 
 | 工具 / Tool | 首次使用 / First use |
 | --- | --- |
-| Codex | 输入 `$portfolio-website`，再发送简历与作品。Type `$portfolio-website`, then provide your résumé and work. |
-| Claude Code | 输入 `/portfolio-website`，再发送材料。Type `/portfolio-website`, then provide your material. |
-| Cursor | 在 Agent 中选择该 Skill，或写“使用 portfolio-website 制作我的作品集”。Select the Skill in Agent, or ask it to use portfolio-website. |
+| Codex | 输入 `$portfolio-website`，再发送目标、内容和限制。Type `$portfolio-website`, then provide your goals, content, and constraints. |
+| Claude Code | 输入 `/portfolio-website`，再发送需求和材料。Type `/portfolio-website`, then provide your brief and material. |
+| Cursor | 在 Agent 中选择该 Skill，或要求它使用 portfolio-website。Select the Skill in Agent, or ask it to use portfolio-website. |
 
 例如：Example request:
 
@@ -82,6 +82,6 @@ CLI 安装可用 `npx skills check` 检查更新、`npx skills update portfolio-
 
 For CLI installations, use `npx skills check`, `npx skills update portfolio-website`, or `npx skills remove portfolio-website`; use `-g` for the global scope. For manual installations, compare and replace or remove the Skill folder. Keep local changes and your generated portfolio project separately.
 
-旧版名称是 `bespoke-portfolio`。如果装过旧版，先在原安装范围移除旧 Skill，再安装 `portfolio-website`，避免工具同时读到两份。Earlier versions used the name `bespoke-portfolio`; remove that older Skill in the same scope before installing the new one.
+早期的 `bespoke-portfolio` 可能是独立维护的私人 Skill。安装前先比较内容，不要直接覆盖；若两者自动触发范围冲突，可在宿主中选择要启用的版本。An earlier `bespoke-portfolio` may be a separately maintained private Skill. Compare it before replacing anything; if implicit invocation overlaps, choose which one to enable in your host.
 
 工具目录与调用方式参考：[Codex](https://learn.chatgpt.com/docs/build-skills)、[Claude Code](https://code.claude.com/docs/en/skills)、[Cursor](https://cursor.com/docs/skills)。

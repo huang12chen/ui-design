@@ -16,14 +16,14 @@ npm run release
 
 | 文件 | 内容 |
 | --- | --- |
-| `portfolio-ui-design-source.zip` | 顶层为 `portfolio-ui-design/`，包含白名单内的静态站、代码、测试、公共文档、实际截图、Skill 与部署示例。 |
+| `portfolio-ui-design-source.zip` | 顶层为 `portfolio-ui-design/`，包含白名单内的四个示例站、代码、测试、公共文档、实际截图、Skill 与部署示例。 |
 | `portfolio-ui-design-site.zip` | 顶层直接包含 `index.html`、`project.html`、`about.html`、案例、素材和许可，可供静态托管平台上传 ZIP。 |
 | `manifest.json` | 两个压缩包及其中每个文件的大小与 SHA-256。 |
 | `SHA256SUMS.txt` | 两个压缩包和清单的校验值。 |
 
 打包器回读写出的 ZIP 字节，逐文件核对长度与 SHA-256；固定 ZIP 时间戳使相同源码可产生相同结果。选中目录内的链接、重解析点、私有文件、未允许的文件类型以及文本中可识别的凭据或个人本地路径会导致失败。这是针对发布包的检查，不能代替素材授权与内容核对。
 
-正常命令会拒绝不完整的教学包：作品集 Skill 的入口与元数据、README 使用的六张截图均须存在。如确实需要不完整的本地草稿，可执行 `npm run release -- --allow-incomplete`；清单会标明 `complete: false` 并列出缺失材料，不能把该草稿当成完整交付。
+正常命令会拒绝不完整的教学包：作品集 Skill 的入口与元数据、十二张必需截图均须存在。如确实需要不完整的本地草稿，可执行 `npm run release -- --allow-incomplete`；清单会标明 `complete: false` 并列出缺失材料，不能把该草稿当成完整交付。
 
 上传前检查生成清单与两个压缩包。个人原稿和托管身份保存在仓库外。生成发布包不会新建 GitHub 仓库、推送代码、修改网站访问范围或向外部发布。
 

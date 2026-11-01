@@ -5,12 +5,68 @@ import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
-import { RULES, auditSite, columnCollapse, verifyRuleRefs } from '../skills/portfolio-website/scripts/audit-site.mjs';
+import { spawnSync } from 'node:child_process';
+import { RULES, auditSite, browserMeasurementFailure, classifyCraftStatus, columnCollapse, verifyRuleRefs } from '../skills/portfolio-website/scripts/audit-site.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const skill = join(root, 'skills', 'portfolio-website');
 const shared = ['audit-site.mjs', 'craft-probes.mjs', 'serve.mjs'];
 const sha = async path => createHash('sha256').update(await readFile(path)).digest('hex');
+
+test('a requested browser that cannot start never returns a successful CLI verdict', () => {
+  // Node is a real executable on every test platform, but it cannot serve Chrome DevTools.
+  // A real binary catches launch failures as well as discovery failures.
+  const fixture = join(root, 'tests', 'fixtures', 'browser', 'clean');
+  const selfcheck = join(skill, 'scripts', 'selfcheck.mjs');
+  for (const format of [[], ['--json']]) {
+    const run = spawnSync(process.execPath, [selfcheck, fixture, '--chrome', process.execPath, ...format],
+      { encoding: 'utf8', timeout: 30000, windowsHide: true });
+    assert.equal(run.status, 2, `self-check must report unavailable browser: ${run.stdout} ${run.stderr}`);
+    if (format.length) assert.equal(JSON.parse(run.stdout).browser, 'unavailable');
+    else assert.match(run.stdout, /RESULT: could not finish/);
+  }
+  const audit = spawnSync(process.execPath,
+    [join(root, 'scripts', 'audit-site.mjs'), fixture, '--browser', '--chrome', process.execPath],
+    { encoding: 'utf8', timeout: 30000, windowsHide: true });
+  assert.equal(audit.status, 2, `browser audit must report unavailable browser: ${audit.stderr}`);
+  const staticOnly = spawnSync(process.execPath, [selfcheck, fixture, '--static-only'],
+    { encoding: 'utf8', timeout: 30000, windowsHide: true });
+  assert.equal(staticOnly.status, 0, staticOnly.stdout + staticOnly.stderr);
+  assert.match(staticOnly.stdout, /static checks measured and clean/i);
+  const missingBinary = spawnSync(process.execPath, [selfcheck, fixture, '--chrome', join(root, 'missing-browser-binary'), '--json'],
+    { encoding: 'utf8', timeout: 30000, windowsHide: true });
+  assert.equal(missingBinary.status, 2, 'an explicitly missing binary must not fall back to a different browser');
+  assert.equal(JSON.parse(missingBinary.stdout).browser, 'unavailable');
+  const missingValue = spawnSync(process.execPath, [selfcheck, fixture, '--chrome'],
+    { encoding: 'utf8', timeout: 30000, windowsHide: true });
+  assert.equal(missingValue.status, 2, 'a missing --chrome value must be an error');
+  assert.match(missingValue.stderr, /needs a browser path/);
+});
+
+test('a missing site directory reports that the audit could not run', () => {
+  const missing = join(root, 'tests', 'fixtures', 'does-not-exist');
+  for (const format of [[], ['--json']]) {
+    const run = spawnSync(process.execPath, [join(skill, 'scripts', 'selfcheck.mjs'), missing, '--static-only', ...format],
+      { encoding: 'utf8', timeout: 30000, windowsHide: true });
+    assert.equal(run.status, 2, run.stdout + run.stderr);
+    if (format.length) assert.ok(JSON.parse(run.stdout).error);
+    else assert.match(run.stdout, /RESULT: could not finish/);
+  }
+});
+
+test('unmeasured routes and craft dimensions cannot be summarized as passes', () => {
+  const incomplete = { browserLayer: { browser: 'Chrome', pages: [
+    { file: 'index.html', measured: true }, { file: 'other.html', measured: false, error: 'timed out' }
+  ] } };
+  assert.match(browserMeasurementFailure(incomplete), /other\.html: timed out/);
+  assert.match(browserMeasurementFailure({ browserLayer: { browser: 'Chrome', pages: [{ file: 'index.html', measured: true }], craft: { executedPasses: 0 } } }, { requireCraft: true }), /craft probes/);
+  assert.equal(classifyCraftStatus('PASS (no horizontal overflow)'), 'pass');
+  assert.equal(classifyCraftStatus('FINDINGS'), 'fail');
+  assert.equal(classifyCraftStatus('FAIL'), 'fail');
+  for (const status of ['NOT-FOUND (no table)', 'NOT-RUN', 'NOT-MEASURABLE', 'unknown']) {
+    assert.equal(classifyCraftStatus(status), 'notMeasured', status);
+  }
+});
 
 test('the self-check the Skill ships is the same instrument the example site is built against', async () => {
   /* Two copies exist because the Skill has to be publishable on its own and the repo has to be able

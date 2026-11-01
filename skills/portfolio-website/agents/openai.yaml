@@ -1,6 +1,6 @@
 interface:
-  display_name: "作品集 UI 设计 / Portfolio UI Design"
-  short_description: "Build a portfolio website from your resume and work"
-  default_prompt: "Use $portfolio-website to design and build a portfolio from my work, evidence, and intended audience."
+  display_name: "通用 UI 设计 / UI Design"
+  short_description: "Design interfaces around their users, content, and tasks"
+  default_prompt: "Use $portfolio-website to design and build an interface suited to my audience, content, and goals."
 policy:
   allow_implicit_invocation: true

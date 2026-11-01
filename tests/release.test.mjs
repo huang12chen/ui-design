@@ -44,6 +44,7 @@ async function fixture(name) {
     'examples/alex-lin/dist/project.html': '<!doctype html><html><body>Case</body></html>',
     'examples/alex-lin/dist/about.html': '<!doctype html><html><body>About</body></html>',
     'examples/alex-lin/dist/assets/shape.svg': '<svg xmlns="http://www.w3.org/2000/svg">示例</svg>',
+    'examples/alex-lin/tools/views.js': 'export {};\n',
     'docs/deploy.md': '# Deployment\n',
     'docs/deploy.zh-CN.md': '# 部署\n',
     'docs/recording-guide.md': '# Teaching\n',
@@ -52,11 +53,23 @@ async function fixture(name) {
     'docs/packages.zh-CN.md': '# 发布\n',
     'DESIGN.md': '# Design\n',
     'scripts/serve.mjs': 'export {};\n',
+    'scripts/serve-examples.mjs': 'export {};\n',
+    'examples/index.html': '<!doctype html><html><body>Examples</body></html>',
+    'examples/kora-shop/index.html': '<!doctype html><html><body>Shop</body></html>',
+    'examples/dispatch-dashboard/index.html': '<!doctype html><html><body>Dashboard</body></html>',
+    'examples/draft-studio/index.html': '<!doctype html><html><body>Draft</body></html>',
     'scripts/check.mjs': 'export {};\n',
     'scripts/package-release.mjs': 'export {};\n',
+    'scripts/audit-site.mjs': 'export {};\n',
+    'scripts/craft-probes.mjs': 'export {};\n',
     'tests/demos.test.mjs': 'export {};\n',
     'tests/site.test.mjs': 'export {};\n',
     'tests/release.test.mjs': 'export {};\n',
+    'tests/audit.test.mjs': 'export {};\n',
+    'tests/craft.test.mjs': 'export {};\n',
+    'tests/selfcheck.test.mjs': 'export {};\n',
+    'tests/mobile-occlusion.test.mjs': 'export {};\n',
+    'tests/fixtures/browser/clean/index.html': '<!doctype html><html><body>Fixture</body></html>',
     'docs/screenshots/home-desktop.png': Buffer.from([137, 80, 78, 71, 0, 255, 1]),
     'skills/portfolio-website/SKILL.md': '---\nname: portfolio-website\ndescription: Example\n---\n',
     'skills/portfolio-website/references/example.md': '# Reference\n',
@@ -70,7 +83,7 @@ async function fixture(name) {
     'authoring-evidence.md': 'PRIVATE_SENTINEL',
     'docs/owner-session.json': 'PRIVATE_SENTINEL'
   };
-  for (const name of ['growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png', 'story-desktop.png']) files['docs/screenshots/' + name] = Buffer.from([137, 80, 78, 71, 0, 255, 1]);
+  for (const name of ['growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png', 'story-desktop.png', 'shop-desktop.png', 'dashboard-desktop.png', 'draft-desktop.png', 'shop-mobile.png', 'dashboard-mobile.png', 'draft-mobile.png']) files['docs/screenshots/' + name] = Buffer.from([137, 80, 78, 71, 0, 255, 1]);
   for (const [relative, content] of Object.entries(files)) {
     const file = join(root, relative);
     await mkdir(dirname(file), { recursive: true });
@@ -101,6 +114,8 @@ test('release creates allowlisted source and flat site archives with verified ha
   const source = readZipEntries(await readFile(join(root, 'release', 'portfolio-ui-design-source.zip')));
   const site = readZipEntries(await readFile(join(root, 'release', 'portfolio-ui-design-site.zip')));
   for (const path of ['portfolio-ui-design/README.md', 'portfolio-ui-design/docs/media/gallery.gif', 'portfolio-ui-design/docs/deploy.md', 'portfolio-ui-design/docs/screenshots/home-desktop.png', 'portfolio-ui-design/skills/portfolio-website/SKILL.md', 'portfolio-ui-design/deploy/nginx.conf', 'portfolio-ui-design/.github/workflows/pages.yml']) assert.ok(source.has(path), path);
+  for (const name of ['kora-shop', 'dispatch-dashboard', 'draft-studio']) assert.ok(source.has('portfolio-ui-design/examples/' + name + '/index.html'));
+  for (const name of ['scripts/audit-site.mjs', 'scripts/craft-probes.mjs', 'examples/alex-lin/tools/views.js', 'tests/selfcheck.test.mjs', 'tests/fixtures/browser/clean/index.html']) assert.ok(source.has('portfolio-ui-design/' + name), name);
   assert.equal([...source.keys()].some(path => path.startsWith('portfolio-ui-design/skills/unpublished-draft/')), false);
   assert.ok(site.has('index.html'));
   assert.ok(site.has('LICENSE.txt'));
