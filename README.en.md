@@ -18,18 +18,18 @@ A UI design Skill for coding tools such as Codex, Claude Code, and Cursor. It he
 Run this in your project and select your coding tool:
 
 ```sh
-npx skills add huang12chen/ui-design --skill portfolio-website
+npx skills add huang12chen/ui-design --skill ui-design
 ```
 
 Requires Node.js 22.20+. This installs to the current project; add `-g` for your user directory. See [manual installation, discovery, and updates](docs/install.md).
 
-The invocation name remains `portfolio-website` for existing installations. Use `$portfolio-website` in Codex or `/portfolio-website` in Claude Code.
+The primary invocation name is `ui-design`; the legacy `portfolio-website` Skill remains independently installable. Use `$ui-design` in Codex or `/ui-design` in Claude Code.
 
 ## How to use it
 
 Describe the audience, main task, existing identity or material, technical constraints, and anything that should remain private. For example:
 
-> Use $portfolio-website to build a shop for an independent coffee brand. Customers should be able to compare products, select an option, and review their bag. Research suitable examples, develop a direction for this brand, and test the main interactions on desktop and mobile. Clearly label any checkout that is not connected.
+> Use $ui-design to build a shop for an independent coffee brand. Customers should be able to compare products, select an option, and review their bag. Research suitable examples, develop a direction for this brand, and test the main interactions on desktop and mobile. Clearly label any checkout that is not connected.
 
 You can also provide a résumé and work for a portfolio, or data and workflows for a dashboard. For an existing interface, describe the specific problem. [More example requests](docs/examples.md)
 

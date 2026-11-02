@@ -78,6 +78,9 @@ async function fixture(name) {
     'tests/draft-states.test.mjs': 'export {};\n',
     'tests/fixtures/browser/clean/index.html': '<!doctype html><html><body>Fixture</body></html>',
     'docs/screenshots/home-desktop.png': Buffer.from([137, 80, 78, 71, 0, 255, 1]),
+    'skills/ui-design/SKILL.md': '---\nname: ui-design\ndescription: Example\n---\n',
+    'skills/ui-design/references/example.md': '# Reference\n',
+    'skills/ui-design/agents/openai.yaml': 'interface: {}\n',
     'skills/portfolio-website/SKILL.md': '---\nname: portfolio-website\ndescription: Example\n---\n',
     'skills/portfolio-website/references/example.md': '# Reference\n',
     'skills/portfolio-website/agents/openai.yaml': 'interface: {}\n',
@@ -122,6 +125,7 @@ test('release creates allowlisted source and flat site archives with verified ha
   const site = readZipEntries(await readFile(join(root, 'release', 'portfolio-ui-design-site.zip')));
   const canonicalSource = readZipEntries(await readFile(join(root, 'release', 'ui-design-source.zip')));
   const canonicalSite = readZipEntries(await readFile(join(root, 'release', 'ui-design-site.zip')));
+  assert.ok(canonicalSource.has('ui-design/skills/ui-design/SKILL.md'));
   assert.ok(canonicalSource.has('ui-design/skills/portfolio-website/SKILL.md'));
   assert.ok(canonicalSource.has('ui-design/examples/motion-lab/index.html'));
   assert.deepEqual(canonicalSite.get('index.html'), site.get('index.html'));

@@ -20,6 +20,12 @@ When comparing directions, look at the navigation model, first screen, density, 
 
 For an open brief with room to explore, sketch at least two plausible *structures* before committing: what appears first, what the user acts on, how content is grouped, and what visual material carries the idea. For example, a collection-first shop, an object-focused product story, and a guided comparison make different choices even if they sell the same thing. Choose for the actual task and identity, not for novelty alone; an existing design system or explicit direction can make exploration unnecessary. Compare with recent work: repeated split heroes, the same headline cadence, decorative symbols, type pairing, card shape, and motion can create a house signature even when the colors differ. Change the underlying decisions when they do not fit this brief, and preserve familiar patterns when they help the user.
 
+## Make the direction concrete
+
+Before styling an open brief, identify the main decision, first action, real content and trust evidence. Compare two genuinely different information structures in a few lines: their first screen, navigation, content grouping and mobile flow. Choose the one that best serves this audience and task; explain the tradeoff in DESIGN.md. If the brief already specifies an identity or layout, use it and resolve only genuine gaps.
+
+Define the visual and motion idea from the chosen structure and available assets. Show what moves, what causes it, which state changes, and what remains usable when motion is reduced. Make at least one purposeful visual or interaction choice specific to the actual content, not just a palette change. Check the rendered first screen and a key task at phone and desktop widths; revise repeated composition, weak hierarchy or generic decorative marks when they conflict with the brief. Do not force unusual layouts into high-frequency workflows.
+
 ## Choose interaction by its purpose
 
 | Pattern | Useful when | Implementation and checks |

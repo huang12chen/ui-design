@@ -1,5 +1,5 @@
 interface:
-  display_name: "通用 UI 设计 / UI Design"
+  display_name: "UI Design（旧名兼容）"
   short_description: "Design interfaces around their users, content, and tasks"
   default_prompt: "Use $portfolio-website to design and build an interface suited to my audience, content, and goals."
 policy:

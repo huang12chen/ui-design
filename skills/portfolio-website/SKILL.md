@@ -1,6 +1,6 @@
 ---
 name: portfolio-website
-description: Design, build, or redesign websites and web interfaces for brand sites, shops, dashboards, AI products, portfolios, and other purposes. Derive the visual direction and interaction model from the audience, task, content, existing identity, and constraints; implement and inspect a working result. Also use for résumé, CV, 简历, 作品集, portfolio, 官网, 商城, 后台, 仪表盘 and AI 产品 interface requests. The stable portfolio-website name keeps existing installations compatible.
+description: Compatibility entry for existing portfolio-website users. Design, build, or redesign websites and web interfaces for the actual audience, task, content, identity, and constraints. The current primary Skill name is ui-design.
 ---
 
 # UI Design

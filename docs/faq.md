@@ -39,7 +39,7 @@ npm run dev:examples
 
 ## The Skill is not visible / 找不到 Skill
 
-Check that the complete `portfolio-website` folder is in the host's supported discovery path and `SKILL.md` is directly inside it. Refresh or restart the host if needed. Do not create nested copies or overwrite private Skills. See [installation](install.md).
+Check that the complete `ui-design` folder is in the host's supported discovery path and `SKILL.md` is directly inside it. Refresh or restart the host if needed. Do not create nested copies or overwrite private Skills. See [installation](install.md).
 
 检查完整文件夹、入口层级和宿主的发现目录；必要时刷新或重启。不要覆盖自己的私人 Skill，详见[安装指南](install.md)。
 

@@ -1,0 +1,6 @@
+interface:
+  display_name: "通用 UI 设计 / UI Design"
+  short_description: "Design interfaces around their users, content, and tasks"
+  default_prompt: "Use $ui-design to design and build an interface suited to my audience, content, and goals."
+policy:
+  allow_implicit_invocation: true

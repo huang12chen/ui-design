@@ -18,18 +18,18 @@
 在项目目录运行，按提示选择编码工具：
 
 ```sh
-npx skills add huang12chen/ui-design --skill portfolio-website
+npx skills add huang12chen/ui-design --skill ui-design
 ```
 
 需要 Node.js 22.20+。默认安装到当前项目；添加 `-g` 可安装到用户目录。[手动安装、确认和更新](docs/install.md)
 
-Skill 的调用名继续使用 `portfolio-website`，兼容以前的安装。Codex 中输入 `$portfolio-website`，Claude Code 中输入 `/portfolio-website`。
+Skill 的主调用名是 `ui-design`；已有的 `portfolio-website` 仍可单独安装和调用。Codex 中输入 `$ui-design`，Claude Code 中输入 `/ui-design`。
 
 ## 怎么使用
 
 描述目标用户、要完成的任务、现有品牌或素材、技术限制和希望保密的内容。例如：
 
-> 使用 $portfolio-website 为一家独立咖啡品牌制作商城。顾客需要比较商品、选择规格并查看购物袋。请先研究合适的案例，提出适合这个品牌的视觉方向，完成桌面和手机页面，并实际检查主要交互。没有接入支付的部分要明确标注。
+> 使用 $ui-design 为一家独立咖啡品牌制作商城。顾客需要比较商品、选择规格并查看购物袋。请先研究合适的案例，提出适合这个品牌的视觉方向，完成桌面和手机页面，并实际检查主要交互。没有接入支付的部分要明确标注。
 
 也可以提供简历和作品，制作作品集；或提供数据和工作流程，设计后台。已有界面可以直接说明需要改进的地方。[更多使用示例](docs/examples.md)
 

@@ -21,7 +21,7 @@ const publicFiles = [
   '.github/ISSUE_TEMPLATE/bug_report.yml', '.github/ISSUE_TEMPLATE/feature_request.yml', '.github/pull_request_template.md'
 ];
 const screenshotFiles = ['home-desktop.png', 'story-desktop.png', 'growth-demo.png', 'brief-demo.png', 'home-mobile.png', 'about-desktop.png', 'field-desktop.png', 'field-mobile.png', 'shop-desktop.png', 'dashboard-desktop.png', 'draft-desktop.png', 'shop-mobile.png', 'dashboard-mobile.png', 'draft-mobile.png', 'motion-desktop.png', 'motion-mobile.png'].map(name => 'docs/screenshots/' + name);
-const skillDirectories = ['skills/portfolio-website'];
+const skillDirectories = ['skills/ui-design', 'skills/portfolio-website'];
 const requiredFiles = new Set(publicFiles);
 const optionalScreenshots = [];
 const binaryExtensions = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico', '.woff', '.woff2', '.ttf', '.otf', '.mp4']);
