@@ -7,6 +7,7 @@
   <title>Kora Cacao — a little daily ritual</title>
   <link rel="stylesheet" href="./styles.css">
   <script src="./app.js" defer></script>
+  <script src="./visual.js" defer></script>
 </head>
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
@@ -17,8 +18,18 @@
   <button class="cart-trigger" type="button" id="cart-open" aria-haspopup="dialog">Bag <span id="cart-count">0</span></button>
 </header>
 <main id="main" tabindex="-1">
+  <section class="campaign wrap" aria-labelledby="campaign-title">
+    <img class="campaign-image" src="./assets/cacao-ritual.jpg" alt="" width="1947" height="808" fetchpriority="high">
+    <div class="campaign-copy">
+      <p class="campaign-kicker">KORA CACAO <span aria-hidden="true"> / </span> YOUR DAILY PAUSE</p>
+      <h1 id="campaign-title">Make space<br>for a little<br><em>goodness.</em></h1>
+      <p>A warm cup, a quieter moment. Discover the blend that feels like yours.</p>
+      <a class="campaign-link" href="#shop">Shop the blends <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+  <div class="campaign-meta wrap"><span>Fictional brand · AI-generated concept imagery</span><button id="replay-reveal" type="button" aria-label="Replay image reveal" hidden>Replay ↻</button></div>
   <section class="shop wrap" id="shop" aria-labelledby="shop-title">
-    <div class="section-intro"><div><p class="eyebrow">SHOP KORA / DRINKING CACAO</p><h1 id="shop-title">Find your flavor.</h1></div><p>Three cacao blends for a cup that fits your day.</p></div>
+    <div class="section-intro"><div><p class="eyebrow">SHOP KORA / DRINKING CACAO</p><h2 id="shop-title">Find your flavor.</h2></div><p>Three cacao blends for a cup that fits your day.</p></div>
     <div class="products">
       <article class="product"><div class="product-art art-coral"><div class="mini-pack"><span>kora</span><strong>DAILY<br>BLEND</strong><small>SMOOTH &amp; DEEP</small></div><span class="product-number">01</span></div><div class="product-info"><div><h3>The Daily Blend</h3><p>Rich, mellow, ready for anything</p></div><span>$18</span></div><button class="add-button" data-add="daily" type="button">Add to bag <span aria-hidden="true">+</span></button></article>
       <article class="product"><div class="product-art art-yellow"><div class="mini-pack mini-yellow"><span>kora</span><strong>GOLDEN<br>HOUR</strong><small>WARM &amp; SPICED</small></div><span class="product-number">02</span></div><div class="product-info"><div><h3>Golden Hour</h3><p>Warm spice and a softer finish</p></div><span>$20</span></div><button class="add-button" data-add="golden" type="button">Add to bag <span aria-hidden="true">+</span></button></article>

@@ -1,6 +1,8 @@
 # Third-party notices
 
-The current example sites ship no third-party code, fonts, photographs or bundled libraries. They have no npm dependencies and download no runtime assets. Their visuals are original CSS, inline SVG or text; the current screenshots in the documentation were captured from those examples. The portfolio's asset register is `examples/alex-lin/dist/ASSETS.md`.
+The current example sites ship no third-party code, fonts, photographs or bundled libraries. They have no npm dependencies and download no runtime assets. Their visuals use original CSS, inline SVG, text and an AI-generated concept image; the screenshots in the documentation were captured from those examples. The portfolio's asset register is `examples/alex-lin/dist/ASSETS.md`.
+
+The fictional Kora Cacao example uses `examples/kora-shop/assets/cacao-ritual.jpg`, generated for this project with OpenAI image generation. It is concept imagery, not a photograph of actual products or an endorsement by a real brand.
 
 Type is set in operating-system fallback stacks. Naming a family such as `'Noto Serif SC'` inside a CSS `font-family` list asks the browser to use it when the reader's own machine already has it installed; no font file is copied, subset or redistributed here, so no font licence obligation attaches to this repository.
 

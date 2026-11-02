@@ -16,7 +16,7 @@ const publicFiles = [
   'docs/deploy.md', 'docs/deploy.zh-CN.md', 'docs/recording-guide.md', 'docs/sample-resume.md',
   'docs/packages.md', 'docs/packages.zh-CN.md',
   'scripts/serve.mjs', 'scripts/serve-examples.mjs', 'scripts/check.mjs', 'scripts/package-release.mjs', 'scripts/audit-site.mjs', 'scripts/craft-probes.mjs', 'examples/index.html',
-  'tests/demos.test.mjs', 'tests/site.test.mjs', 'tests/release.test.mjs', 'tests/audit.test.mjs', 'tests/craft.test.mjs', 'tests/selfcheck.test.mjs', 'tests/mobile-occlusion.test.mjs', 'tests/motion-lab.test.mjs', 'tests/field-motion.test.mjs', 'tests/draft-states.test.mjs', 'tests/fixtures/browser/clean/index.html',
+  'tests/demos.test.mjs', 'tests/site.test.mjs', 'tests/release.test.mjs', 'tests/audit.test.mjs', 'tests/craft.test.mjs', 'tests/selfcheck.test.mjs', 'tests/mobile-occlusion.test.mjs', 'tests/motion-lab.test.mjs', 'tests/field-motion.test.mjs', 'tests/draft-states.test.mjs', 'tests/skill-compatibility.test.mjs', 'tests/kora-visual.test.mjs', 'tests/fixtures/browser/clean/index.html',
   'deploy/nginx.conf', '.github/workflows/pages.yml', '.github/workflows/ci.yml',
   '.github/ISSUE_TEMPLATE/bug_report.yml', '.github/ISSUE_TEMPLATE/feature_request.yml', '.github/pull_request_template.md'
 ];

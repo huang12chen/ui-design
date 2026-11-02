@@ -14,6 +14,12 @@ This guide applies across website and product types. A convincing result makes t
 
 Examples are prompts for reasoning, not style assignments: the same appointment service could use a calm, explicit step-by-step flow for an anxious first-time visitor, or a compact, high-density schedule for an experienced coordinator. The distinction affects the task and interaction as well as visual expression. Conversely, two unrelated brands may both need a similar table when comparison is the job.
 
+## Make the chosen direction feel finished
+
+When the brief calls for visual richness, art-direct the actual material: subject, scale, crop, light, type rendering, surface and motion should work as one composition. A labelled rectangle or generic illustration is not automatically an adequate substitute for compelling product imagery. Use appropriately licensed, supplied or generated assets when suitable, disclose fictional imagery where relevant, and keep private material private. A data-heavy tool may instead earn polish through information density, alignment, legibility and precise states; do not force photographic heroes into it.
+
+Compare the rendered page with the user's actual reference if accessible: identify observable qualities to adapt, such as image treatment, typographic rhythm, texture or interaction choreography, without copying a personal identity or a fixed composition. Inspect the first screen, a representative content section and the main interaction; make a specific visual revision when they feel unfinished. Record unavailable references as unverified.
+
 ## Review the rendered result
 
 Review at the relevant desktop and phone widths using real content where permitted. Record the browser, tested sizes, actions and any unverified areas. A screenshot or automated check cannot establish visual quality by itself.

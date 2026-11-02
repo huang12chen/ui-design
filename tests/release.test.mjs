@@ -76,6 +76,8 @@ async function fixture(name) {
     'tests/motion-lab.test.mjs': 'export {};\n',
     'tests/field-motion.test.mjs': 'export {};\n',
     'tests/draft-states.test.mjs': 'export {};\n',
+    'tests/skill-compatibility.test.mjs': 'export {};\n',
+    'tests/kora-visual.test.mjs': 'export {};\n',
     'tests/fixtures/browser/clean/index.html': '<!doctype html><html><body>Fixture</body></html>',
     'docs/screenshots/home-desktop.png': Buffer.from([137, 80, 78, 71, 0, 255, 1]),
     'skills/ui-design/SKILL.md': '---\nname: ui-design\ndescription: Example\n---\n',
